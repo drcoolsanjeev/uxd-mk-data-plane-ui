@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import {
+  Breadcrumb,
+  BreadcrumbItem,
   Button,
   Drawer,
   DrawerPanelContent,
@@ -9,6 +11,8 @@ import {
   DrawerHead,
   DrawerActions,
   DrawerCloseButton,
+  Level,
+  LevelItem,
   PageSection,
   PageSectionVariants,
   Title,
@@ -23,6 +27,7 @@ import { ConsumerGroups } from '../TabSections/ConsumerGroups';
 import { Metrics } from '../TabSections/Metrics';
 import { CreateTopicsWizard } from '../TabSections/CreateTopicsWizard';
 import { TopicItem } from '../TabSections/TopicItem';
+import CodeBranchIcon from '@patternfly/react-icons/dist/js/icons/code-branch-icon';
 
 const OpenShiftStreams: React.FunctionComponent = () => {
 
@@ -92,17 +97,35 @@ const OpenShiftStreams: React.FunctionComponent = () => {
     </Tabs>
   )
 
+  const mainBreadcrumbs = (
+    <Breadcrumb>
+      <BreadcrumbItem to="#">OpenShift Streams</BreadcrumbItem>
+      <BreadcrumbItem to="#" isActive>
+        MK Cluster Instance
+      </BreadcrumbItem>
+    </Breadcrumb>
+  )
+
   return (
     <>
     { !isCreateTopic && !isTopicExpanded &&
       <Drawer isExpanded={isExpanded} onExpand={onExpand}>
         <DrawerContent panelContent={panelContent}>
           <DrawerContentBody>
+            <section className="pf-c-page__main-breadcrumb">
+              { mainBreadcrumbs }
+            </section>
             <PageSection variant={PageSectionVariants.light}>
-              <Title headingLevel="h1" size="lg">MK Cluster Instance</Title>
-              <Button variant="link" onClick={onClusterConnection}>
-                Connect to this cluster
-              </Button>
+              <Level>
+                <LevelItem>
+                  <Title headingLevel="h1" size="xl">MK Cluster Instance</Title>
+                </LevelItem>
+                <LevelItem>
+                  <Button variant="link" icon={<CodeBranchIcon />} iconPosition="right" onClick={onClusterConnection}>
+                    Connect to this cluster
+                  </Button>
+                </LevelItem>
+              </Level>
             </PageSection>
             <PageSection variant={PageSectionVariants.light} padding={{ default: 'noPadding'}}>
               {mainTabs}
