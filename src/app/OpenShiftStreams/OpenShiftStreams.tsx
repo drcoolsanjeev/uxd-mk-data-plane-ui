@@ -54,6 +54,7 @@ const OpenShiftStreams: React.FunctionComponent = () => {
   };
 
   const handleTabClick = (event, tabIndex) => {
+    console.log('what is tabIndex  ' + tabIndex);
     setActiveTabKey(tabIndex);
   };
 
@@ -69,7 +70,7 @@ const OpenShiftStreams: React.FunctionComponent = () => {
   );
 
   const mainTabs = (
-    <Tabs activeKey={activeTabKey} onSelect={handleTabClick}>
+    <Tabs activeKey={activeTabKey} onSelect={handleTabClick} inset={{default: 'insetMd'}}>
       <Tab
         eventKey={0}
         title={<TabTitleText>Home</TabTitleText>}
@@ -132,7 +133,11 @@ const OpenShiftStreams: React.FunctionComponent = () => {
             </PageSection>
             <PageSection>
               <TabContent eventKey={0} id="refTab1Section" ref={contentRef1} aria-label="Tab item 1">
-                <Home/>
+                <Home
+                  isExpanded={isExpanded}
+                  setIsExpanded={setIsExpanded}
+                  setActiveTabKey={setActiveTabKey}
+                />
               </TabContent>
               <TabContent eventKey={1} id="refTab2Section" ref={contentRef2} aria-label="Tab item 2" hidden>
                 <Topics

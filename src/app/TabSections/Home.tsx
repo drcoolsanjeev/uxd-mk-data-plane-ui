@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import {
   Brand,
   Card,
@@ -13,10 +13,25 @@ import Connect from '@app/bgimages/Connect.svg';
 import Education from '@app/bgimages/Education.svg';
 import Create from '@app/bgimages/Create.svg';
 import Documentation from '@app/bgimages/Documentation.svg';
+import './Home.css';
 
 
+const Home: React.FunctionComponent = ({isExpanded, setIsExpanded, setActiveTabKey}) => {
 
-const Home: React.FunctionComponent = () => {
+  const [selected, setSelected] = useState(null);
+
+  const onClick = event => {
+    const newSelected = event.currentTarget.id === selected ? null : event.currentTarget.id;
+    setSelected(newSelected);
+
+    if(event.currentTarget.id === "card-1") {
+      setActiveTabKey(1);
+    }
+
+    if(event.currentTarget.id === "card-3") {
+      setIsExpanded(!isExpanded)
+    }
+  }; 
 
   const cardDetails = [
     {
@@ -32,21 +47,21 @@ const Home: React.FunctionComponent = () => {
     {
       "title":"Documentation",
       "description": "View product documentations, as well as Quickstarts and community content.",
-      "icon": Connect
+      "icon": Documentation
     },
     {
       "title":"Connect to this cluster",
       "description": "Get connection details and sample code to connect your applications.",
-      "icon": Documentation
+      "icon": Connect
     }
   ];
 
   return (
     <>
-      <Gallery hasGutter>
-        { cardDetails.map(cardDetail => (
+      <Gallery hasGutter className="card-gallery">
+        { cardDetails.map((cardDetail, index) => (
           <GalleryItem>
-            <Card>
+            <Card id={`card-${index}`} onClick={onClick} isSelectable isSelected={selected === `card-${index}`}>
               <CardHeader>
                 <CardHeaderMain>
                   <Brand src={cardDetail.icon} alt="Icon" style={{ height: '30px' }}/>
