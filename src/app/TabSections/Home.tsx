@@ -31,7 +31,7 @@ const Home: React.FunctionComponent = ({isExpanded, setIsExpanded, setActiveTabK
     if(event.currentTarget.id === "card-3") {
       setIsExpanded(!isExpanded)
     }
-  }; 
+  };
 
   const cardDetails = [
     {
