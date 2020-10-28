@@ -19,14 +19,16 @@ import {
   TableVariant
 } from '@patternfly/react-table';
 import SearchIcon from '@patternfly/react-icons/dist/js/icons/search-icon';
+import './Topics.css';
 
-const Topics: React.FunctionComponent = ({isCreateTopic, setIsCreateTopic, isTopicExpanded, setIsTopicExpanded}) => {
+const Topics: React.FunctionComponent = ({isCreateTopic, setIsCreateTopic, isTopicExpanded, setIsTopicExpanded, setTopicName}) => {
 
   const createTopic = () => {
     setIsCreateTopic(!isCreateTopic);
   }
 
-  const openTopicItem = () => {
+  const openTopicItem = (nameOfTopic) => {
+    setTopicName(nameOfTopic);
     setIsTopicExpanded(!isTopicExpanded);
   }
 
@@ -89,11 +91,11 @@ const Topics: React.FunctionComponent = ({isCreateTopic, setIsCreateTopic, isTop
       'Replicas',
       'Partitions'
     ]
-  ) 
+  )
 
   const rows = topicsData.map(topic => (
       [
-        topic.name,
+        { title: <Button variant="link" isInline onClick={() => openTopicItem(topic.name)}>{topic.name}</Button>},
         topic.replicas,
         topic.partitions
       ]
@@ -109,12 +111,11 @@ const Topics: React.FunctionComponent = ({isCreateTopic, setIsCreateTopic, isTop
 
   return (
     <>
-      <Button variant="link" onClick={() => openTopicItem()}>Example topic</Button>
       <Card>
         <Toolbar>
           <ToolbarContent>
             <ToolbarItem>
-              <InputGroup>
+              <InputGroup className="topics-search-inputgroup">
                 <TextInput name="textInput1" id="textInput1" type="search" aria-label="search input example" placeholder="Search" />
                 <Button variant={ButtonVariant.control} aria-label="search button for search input">
                   <SearchIcon />
@@ -127,7 +128,9 @@ const Topics: React.FunctionComponent = ({isCreateTopic, setIsCreateTopic, isTop
               </Button>
             </ToolbarItem>
             <ToolbarItem variant="pagination" align={{ default: 'alignRight' }}>
-              Topics per page
+              <div className="topics-per-page">
+               <b>Topics per page:</b> 10
+              </div>
             </ToolbarItem>
           </ToolbarContent>
         </Toolbar>
@@ -136,7 +139,6 @@ const Topics: React.FunctionComponent = ({isCreateTopic, setIsCreateTopic, isTop
           <TableHeader />
           <TableBody />
         </Table>
-
       </Card>
     </>
   )
