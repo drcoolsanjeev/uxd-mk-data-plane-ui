@@ -1,0 +1,7 @@
+.topics-wizard-content {
+  max-width: 500px;
+}
+
+.pf-c-form__group-control > * {
+  margin-bottom: 16px;
+}

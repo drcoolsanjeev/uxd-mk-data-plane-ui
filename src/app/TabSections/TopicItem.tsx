@@ -6,21 +6,18 @@ import {
   Title 
 } from '@patternfly/react-core';
 
-const TopicItem: React.FunctionComponent = () => {
-
-  return (
-    <>
-      <PageSection variant={PageSectionVariants.light}>
-        <Title headingLevel="h1" size="lg">MissingMan_East_Topic_1</Title>
-      </PageSection>
-      <PageSection variant={PageSectionVariants.light} padding={{ default: 'noPadding'}}>
-        Tabs go here
-      </PageSection>
-      <PageSection variant={PageSectionVariants.light}>
-        Wizard goes here
-      </PageSection>
-    </>
-  )
-}
+const TopicItem: React.FunctionComponent = ({topicName}) => (
+  <>
+    <PageSection variant={PageSectionVariants.light}>
+      <Title headingLevel="h1" size="lg">{topicName}</Title>
+    </PageSection>
+    <PageSection variant={PageSectionVariants.light} padding={{ default: 'noPadding'}}>
+      Tabs go here
+    </PageSection>
+    <PageSection variant={PageSectionVariants.light}>
+      Wizard goes here
+    </PageSection>
+  </>
+)
 
 export { TopicItem };
