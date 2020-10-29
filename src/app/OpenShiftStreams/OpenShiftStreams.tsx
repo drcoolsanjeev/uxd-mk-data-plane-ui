@@ -30,6 +30,7 @@ const OpenShiftStreams: React.FunctionComponent = () => {
   const [activeTabKey, setActiveTabKey] = useState(0);
   const [isCreateTopic, setIsCreateTopic] = useState(false);
   const [isTopicExpanded, setIsTopicExpanded] = useState(false);
+  const [topicName, setTopicName] = useState("");
   const drawerRef = React.createRef();
   const contentRef1 = React.createRef();
   const contentRef2 = React.createRef();
@@ -117,6 +118,7 @@ const OpenShiftStreams: React.FunctionComponent = () => {
                   setIsCreateTopic={setIsCreateTopic}
                   isTopicExpanded={isTopicExpanded}
                   setIsTopicExpanded={setIsTopicExpanded}
+                  setTopicName={setTopicName}
                 />
               </TabContent>
               <TabContent eventKey={2} id="refTab3Section" ref={contentRef3} aria-label="Tab item 3" hidden>
@@ -134,7 +136,7 @@ const OpenShiftStreams: React.FunctionComponent = () => {
         <CreateTopicsWizard/>
       }
       { isTopicExpanded &&
-        <TopicItem/>
+        <TopicItem topicName={topicName}/>
       }
     </>
   )
