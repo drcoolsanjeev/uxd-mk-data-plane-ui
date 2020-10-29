@@ -72,7 +72,6 @@ const ClusterConnectionDrawer: React.FunctionComponent = ({onCloseClick, drawerR
           </ClipboardCopy>
         </StackItem>
       </Stack>
-
       <Text component={TextVariants.h5}>
         Certificates
       </Text>
@@ -127,6 +126,17 @@ const ClusterConnectionDrawer: React.FunctionComponent = ({onCloseClick, drawerR
     </TextContent>
   )
 
+  const sampleCodeTab = (
+    <TextContent>
+      <Text component={TextVariants.h5}>
+        Sample connection code
+      </Text>
+      <Text component={TextVariants.p}>
+        Use this snippet of code to set the properties in your Kafka client to connect securely. Replace the values in &lt;brackets&gt;.
+      </Text>
+    </TextContent>
+  )
+
   return (
     <DrawerPanelContent className="cluster-connection-drawer">
       <DrawerHead>
@@ -141,7 +151,7 @@ const ClusterConnectionDrawer: React.FunctionComponent = ({onCloseClick, drawerR
             {resourcesTab}
           </Tab>
           <Tab eventKey={1} title={<TabTitleText>Sample code</TabTitleText>}>
-            Sample code
+            {sampleCodeTab}
           </Tab>
         </Tabs>
       </DrawerPanelBody>
