@@ -179,7 +179,7 @@ const CreateTopicsWizard: React.FunctionComponent = () => {
           If your messages are not read by a consumer within this time, they will be missed.
         </Text>
       </TextContent>
-      <Form>
+      <Form className="form-in-wizard">
           <FormGroup label="Message retention" className="form-group-radio">
             <Radio
               isChecked={radio1Step3}

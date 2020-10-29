@@ -5,3 +5,7 @@
 .pf-c-form__group-control > * {
   margin-bottom: 16px;
 }
+
+.form-in-wizard {
+  padding-top: 16px;
+}
