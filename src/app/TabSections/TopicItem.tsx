@@ -6,10 +6,10 @@ import {
   Title 
 } from '@patternfly/react-core';
 
-const TopicItem: React.FunctionComponent = () => (
+const TopicItem: React.FunctionComponent = ({topicName}) => (
   <>
     <PageSection variant={PageSectionVariants.light}>
-      <Title headingLevel="h1" size="lg">MissingMan_East_Topic_1</Title>
+      <Title headingLevel="h1" size="lg">{topicName}</Title>
     </PageSection>
     <PageSection variant={PageSectionVariants.light} padding={{ default: 'noPadding'}}>
       Tabs go here
