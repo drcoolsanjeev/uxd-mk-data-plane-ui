@@ -1,9 +1,13 @@
 import React, {useState} from 'react';
 import {
+  Breadcrumb,
+  BreadcrumbItem,
   Button,
   Drawer,
   DrawerContent,
   DrawerContentBody,
+  Level,
+  LevelItem,
   PageSection,
   PageSectionVariants,
   Title,
@@ -19,6 +23,7 @@ import { Metrics } from '../TabSections/Metrics';
 import { CreateTopicsWizard } from '../TabSections/CreateTopicsWizard';
 import { TopicItem } from '../TabSections/TopicItem';
 import { ClusterConnectionDrawer } from '@app/TabSections/ClusterConnectionDrawer';
+import CodeBranchIcon from '@patternfly/react-icons/dist/js/icons/code-branch-icon';
 
 const OpenShiftStreams: React.FunctionComponent = () => {
 
@@ -26,6 +31,7 @@ const OpenShiftStreams: React.FunctionComponent = () => {
   const [activeTabKey, setActiveTabKey] = useState(0);
   const [isCreateTopic, setIsCreateTopic] = useState(false);
   const [isTopicExpanded, setIsTopicExpanded] = useState(false);
+  const [topicName, setTopicName] = useState("");
   const drawerRef = React.createRef();
   const contentRef1 = React.createRef();
   const contentRef2 = React.createRef();
@@ -45,11 +51,12 @@ const OpenShiftStreams: React.FunctionComponent = () => {
   };
 
   const handleTabClick = (event, tabIndex) => {
+    console.log('what is tabIndex  ' + tabIndex);
     setActiveTabKey(tabIndex);
   };
 
   const mainTabs = (
-    <Tabs activeKey={activeTabKey} onSelect={handleTabClick}>
+    <Tabs activeKey={activeTabKey} onSelect={handleTabClick} inset={{default: 'insetMd'}}>
       <Tab
         eventKey={0}
         title={<TabTitleText>Home</TabTitleText>}
@@ -77,24 +84,46 @@ const OpenShiftStreams: React.FunctionComponent = () => {
     </Tabs>
   )
 
+  const mainBreadcrumbs = (
+    <Breadcrumb>
+      <BreadcrumbItem to="#">OpenShift Streams</BreadcrumbItem>
+      <BreadcrumbItem to="#" isActive>
+        MK Cluster Instance
+      </BreadcrumbItem>
+    </Breadcrumb>
+  )
+
   return (
     <>
     { !isCreateTopic && !isTopicExpanded &&
       <Drawer isExpanded={isExpanded} onExpand={onExpand}>
         <DrawerContent panelContent={<ClusterConnectionDrawer onCloseClick={onCloseClick} drawerRef={drawerRef} isExpanded={isExpanded}  />}>
           <DrawerContentBody>
+            <section className="pf-c-page__main-breadcrumb">
+              { mainBreadcrumbs }
+            </section>
             <PageSection variant={PageSectionVariants.light}>
-              <Title headingLevel="h1" size="lg">MK Cluster Instance</Title>
-              <Button variant="link" onClick={onClusterConnection}>
-                Connect to this cluster
-              </Button>
+              <Level>
+                <LevelItem>
+                  <Title headingLevel="h1" size="xl">MK Cluster Instance</Title>
+                </LevelItem>
+                <LevelItem>
+                  <Button variant="link" icon={<CodeBranchIcon />} iconPosition="right" onClick={onClusterConnection}>
+                    Connect to this cluster
+                  </Button>
+                </LevelItem>
+              </Level>
             </PageSection>
             <PageSection variant={PageSectionVariants.light} padding={{ default: 'noPadding'}}>
               {mainTabs}
             </PageSection>
             <PageSection>
               <TabContent eventKey={0} id="refTab1Section" ref={contentRef1} aria-label="Tab item 1">
-                <Home/>
+                <Home
+                  isExpanded={isExpanded}
+                  setIsExpanded={setIsExpanded}
+                  setActiveTabKey={setActiveTabKey}
+                />
               </TabContent>
               <TabContent eventKey={1} id="refTab2Section" ref={contentRef2} aria-label="Tab item 2" hidden>
                 <Topics
@@ -102,6 +131,7 @@ const OpenShiftStreams: React.FunctionComponent = () => {
                   setIsCreateTopic={setIsCreateTopic}
                   isTopicExpanded={isTopicExpanded}
                   setIsTopicExpanded={setIsTopicExpanded}
+                  setTopicName={setTopicName}
                 />
               </TabContent>
               <TabContent eventKey={2} id="refTab3Section" ref={contentRef3} aria-label="Tab item 3" hidden>
@@ -119,7 +149,7 @@ const OpenShiftStreams: React.FunctionComponent = () => {
         <CreateTopicsWizard/>
       }
       { isTopicExpanded &&
-        <TopicItem/>
+        <TopicItem topicName={topicName}/>
       }
     </>
   )
