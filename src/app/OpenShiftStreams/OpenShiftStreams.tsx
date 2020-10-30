@@ -4,13 +4,8 @@ import {
   BreadcrumbItem,
   Button,
   Drawer,
-  DrawerPanelContent,
   DrawerContent,
   DrawerContentBody,
-  DrawerPanelBody,
-  DrawerHead,
-  DrawerActions,
-  DrawerCloseButton,
   Level,
   LevelItem,
   PageSection,
@@ -27,6 +22,7 @@ import { ConsumerGroups } from '../TabSections/ConsumerGroups';
 import { Metrics } from '../TabSections/Metrics';
 import { CreateTopicsWizard } from '../TabSections/CreateTopicsWizard';
 import { TopicItem } from '../TabSections/TopicItem';
+import { ClusterConnectionDrawer } from '@app/TabSections/ClusterConnectionDrawer';
 import CodeBranchIcon from '@patternfly/react-icons/dist/js/icons/code-branch-icon';
 
 const OpenShiftStreams: React.FunctionComponent = () => {
@@ -58,17 +54,6 @@ const OpenShiftStreams: React.FunctionComponent = () => {
     console.log('what is tabIndex  ' + tabIndex);
     setActiveTabKey(tabIndex);
   };
-
-  const panelContent = (
-    <DrawerPanelContent>
-      <DrawerHead>
-        <span tabIndex={isExpanded ? 0 : -1} ref={drawerRef}>drawer-panel</span>
-        <DrawerActions>
-          <DrawerCloseButton onClick={onCloseClick} />
-        </DrawerActions>
-      </DrawerHead>
-    </DrawerPanelContent>
-  );
 
   const mainTabs = (
     <Tabs activeKey={activeTabKey} onSelect={handleTabClick} inset={{default: 'insetMd'}}>
@@ -112,7 +97,7 @@ const OpenShiftStreams: React.FunctionComponent = () => {
     <>
     { !isCreateTopic && !isTopicExpanded &&
       <Drawer isExpanded={isExpanded} onExpand={onExpand}>
-        <DrawerContent panelContent={panelContent}>
+        <DrawerContent panelContent={<ClusterConnectionDrawer onCloseClick={onCloseClick} drawerRef={drawerRef} isExpanded={isExpanded}  />}>
           <DrawerContentBody>
             <section className="pf-c-page__main-breadcrumb">
               { mainBreadcrumbs }
