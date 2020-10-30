@@ -9,3 +9,15 @@
 .form-in-wizard {
   padding-top: 16px;
 }
+
+.radio-description {
+  padding-left: 23px;
+}
+
+.create-topic-wizard {
+  padding-top: 16px;
+}
+
+.pf-c-form__group-control > * {
+  margin-bottom: 0;
+}

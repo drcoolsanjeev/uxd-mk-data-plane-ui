@@ -16,6 +16,7 @@ import {
   Select,
   SelectOption,
   SelectVariant,
+  Switch,
   Title,
   TextContent,
   Text,
@@ -24,6 +25,7 @@ import {
 } from '@patternfly/react-core';
 import { Touchspin } from '../CustomComponents/TouchSpin';
 import './CreateTopicsWizard.css';
+import { CreateTopicsWizardMoreOptions } from './CreateTopicsWizardMoreOptions';
 
 const CreateTopicsWizard: React.FunctionComponent = () => {
 
@@ -39,6 +41,7 @@ const CreateTopicsWizard: React.FunctionComponent = () => {
   const [partitionTouchspinValue, setPartitionTouchspinValue] = useState(1);
   const [isMsgSelectOpen, setIsMsgSelectOpen] = useState(false);
   const [selected, setSelected] = useState(false);
+  const [isSwitchChecked, setIsSwitchChecked] = useState(false);
 
   console.log('what is the msgReten' + msgRetentionValue);
 
@@ -88,16 +91,16 @@ const CreateTopicsWizard: React.FunctionComponent = () => {
     const value = target.type === 'radio' ? target.checked : target.value;
     const name = target.name;
 
-    if (name === "radio1") {
+    if (name === "radio4") {
       setRadio1Step4(value)
       setMsgRetentionValue(value)
     }
-    else if (name === "radio2") {
-      setRadio2Step3(value)
+    else if (name === "radio5") {
+      setRadio2Step4(value)
       setMsgRetentionValue(value)
     }
-    else if (name === "radio3") {
-      setRadio3Step3(value)
+    else if (name === "radio6") {
+      setRadio3Step4(value)
       setMsgRetentionValue(value)
     }
   }
@@ -113,6 +116,10 @@ const CreateTopicsWizard: React.FunctionComponent = () => {
 
   const onMsgToggle = (isMsgSelectOpen) => {
     setIsMsgSelectOpen(isMsgSelectOpen);
+  }
+
+  const handleSwitchChange = isSwitchChecked => {
+    setIsSwitchChecked(isSwitchChecked);
   }
 
   const step1 = (
@@ -186,7 +193,7 @@ const CreateTopicsWizard: React.FunctionComponent = () => {
               name="radio1"
               onChange={handleChangeStep3}
               label="A day"
-              id="radio-controlled"
+              id="radio-controlled-1"
               value="day"
             />
             <Radio
@@ -194,7 +201,7 @@ const CreateTopicsWizard: React.FunctionComponent = () => {
               name="radio2"
               onChange={handleChangeStep3}
               label="A week"
-              id="radio-controlled"
+              id="radio-controlled-2"
               value="week"
             />
             <Radio
@@ -202,29 +209,31 @@ const CreateTopicsWizard: React.FunctionComponent = () => {
               name="radio3"
               onChange={handleChangeStep3}
               label="A month"
-              id="radio-controlled"
+              id="radio-controlled-3"
               value="month"
             />
-            <Flex>
-              <FlexItem>
-                <Touchspin value={msgTouchspinValue}/>
-              </FlexItem>
-              <FlexItem>
-                <Select
-                  variant={SelectVariant.single}
-                  aria-label="Select Input"
-                  onToggle={onMsgToggle}
-                  onSelect={onMsgSelect}
-                  selections={selected}
-                  isOpen={isMsgSelectOpen}
-                  // aria-labelledby={titleId}
-                >
-                  <SelectOption key={0} value="days" isPlaceholder/>
-                  <SelectOption key={1} value="weeks" />
-                  <SelectOption key={2} value="months" />
-                </Select>
-              </FlexItem>
-            </Flex>
+            <div className="radio-description">
+              <Flex>
+                <FlexItem>
+                  <Touchspin value={msgTouchspinValue}/>
+                </FlexItem>
+                <FlexItem>
+                  <Select
+                    variant={SelectVariant.single}
+                    aria-label="Select Input"
+                    onToggle={onMsgToggle}
+                    onSelect={onMsgSelect}
+                    selections={selected}
+                    isOpen={isMsgSelectOpen}
+                    // aria-labelledby={titleId}
+                  >
+                    <SelectOption key={0} value="days" isPlaceholder/>
+                    <SelectOption key={1} value="weeks" />
+                    <SelectOption key={2} value="months" />
+                  </Select>
+                </FlexItem>
+              </Flex>
+            </div>
           </FormGroup>
         </Form>
     </>
@@ -246,35 +255,37 @@ const CreateTopicsWizard: React.FunctionComponent = () => {
           <FormGroup label="Replicas">
             <Radio
               isChecked={radio1Step4}
-              name="radio1"
+              name="radio4"
               onChange={handleChangeStep4}
               label="Replication factor: 1"
-              id="radio-controlled"
-              value="radio1"
+              id="radio-controlled-4"
+              value="radio4"
               description="Minimum in-sync replicas: 1"
             />
             <Radio
               isChecked={radio2Step4}
-              name="radio2"
+              name="radio5"
               onChange={handleChangeStep4}
               label="Replication factor: 2"
-              id="radio-controlled"
-              value="radio2"
+              id="radio-controlled-5"
+              value="radio5"
               description="Minimum in-sync replicas: 2"
             />
             <Radio
               isChecked={radio3Step4}
-              name="radio3"
+              name="radio6"
               onChange={handleChangeStep4}
               label="Replication factor"
-              id="radio-controlled"
-              value="radio3"
+              id="radio-controlled-6"
+              value="radio6"
             />
-            <Touchspin value={3} />
-            <Text component={TextVariants.small}>
-              Minimum in-sync replicas
-            </Text>
-            <Touchspin value={2} />
+            <div className="radio-description">
+              <Touchspin value={3} />
+              <Text component={TextVariants.small}>
+                Minimum in-sync replicas
+              </Text>
+              <Touchspin value={2} />
+            </div>
           </FormGroup>
         </Form>
       </TextContent>
@@ -297,16 +308,29 @@ const CreateTopicsWizard: React.FunctionComponent = () => {
     </section>
     <PageSection variant={PageSectionVariants.light}>
       <Title headingLevel="h1" size="lg">Create topic</Title>
-      Switch goes here
-    </PageSection>
-    <Divider/>
-    <PageSection variant={PageSectionVariants.light} padding={{ default: 'noPadding' }}>
-      <Wizard
-        navAriaLabel={`${title} steps`}
-        mainAriaLabel={`${title} content`}
-        steps={steps}
+      <Switch
+        id="simple-switch"
+        label="Show all available options"
+        labelOff="Show all available options"
+        isChecked={isSwitchChecked}
+        onChange={handleSwitchChange}
+        className="create-topic-wizard"
       />
     </PageSection>
+    <Divider/>
+      { isSwitchChecked ? (
+        <PageSection variant={PageSectionVariants.light}>
+          <CreateTopicsWizardMoreOptions/>
+        </PageSection>
+      ) : (
+        <PageSection variant={PageSectionVariants.light} padding={{ default: 'noPadding' }}>
+          <Wizard
+          navAriaLabel={`${title} steps`}
+          mainAriaLabel={`${title} content`}
+          steps={steps}
+          />
+        </PageSection>
+      )}
   </>
   );
 }
