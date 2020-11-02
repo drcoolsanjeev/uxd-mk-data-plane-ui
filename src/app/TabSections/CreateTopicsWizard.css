@@ -34,3 +34,7 @@
 .form-group-radio .pf-c-form__group-control > * {
   margin-bottom: 16px;
 }
+
+.minimum-insync-replicas {
+  margin-top: 16px;
+}

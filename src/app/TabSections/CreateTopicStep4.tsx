@@ -82,7 +82,7 @@ const CreateTopicStep4: React.FunctionComponent = () => {
               />
               <div className="radio-description">
                 <Touchspin value={3} />
-                <Text component={TextVariants.small}>
+                <Text component={TextVariants.small} className="minimum-insync-replicas">
                   Minimum in-sync replicas
                 </Text>
                 <Touchspin value={2} />

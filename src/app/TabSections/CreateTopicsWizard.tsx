@@ -334,12 +334,15 @@ const CreateTopicsWizard: React.FunctionComponent = () => {
     </PageSection>
     <Divider/>
       { isSwitchChecked ? (
+        <>
+        <Divider/>
         <PageSection variant={PageSectionVariants.light}>
           <CreateTopicsWizardMoreOptions/>
-          <Divider/>
         </PageSection>
+        </>
       ) : (
         <PageSection variant={PageSectionVariants.light} padding={{ default: 'noPadding' }}>
+          {/* <Divider/> */}
           <Wizard
           navAriaLabel={`${title} steps`}
           mainAriaLabel={`${title} content`}

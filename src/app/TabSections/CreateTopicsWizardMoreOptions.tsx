@@ -217,7 +217,6 @@ const CreateTopicsWizardMoreOptions: React.FunctionComponent = () => {
           We recommend you fill out and evaluate these details at a minimum before deploying your topic.
         </Text>
       </TextContent>
-
       <Form>
           <FormGroup
             label="Topic name"
