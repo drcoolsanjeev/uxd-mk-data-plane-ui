@@ -26,7 +26,7 @@ const Touchspin: React.FunctionComponent = ({value, maxWidth}) => {
 
   return (
     <>
-      <InputGroup className={ maxWidth ? `input-group-max-width`: `input-group-fixed-width`}>
+      <InputGroup className={  maxWidth ? `pf-c-touchspin input-group-max-width`: `pf-c-touchspin input-group-fixed-width` }>
         <Button variant="control" aria-label="Minus" onClick={decreaseInput}>
           <MinusIcon />
         </Button>

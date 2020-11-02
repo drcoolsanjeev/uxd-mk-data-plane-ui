@@ -26,6 +26,7 @@ import {
 import { Touchspin } from '../CustomComponents/TouchSpin';
 import './CreateTopicsWizard.css';
 import { CreateTopicsWizardMoreOptions } from './CreateTopicsWizardMoreOptions';
+import { CreateTopicStep4 } from './CreateTopicStep4';
 
 const CreateTopicsWizard: React.FunctionComponent = () => {
 
@@ -33,6 +34,7 @@ const CreateTopicsWizard: React.FunctionComponent = () => {
   const [radio1Step3, setRadio1Step3] = useState(false);
   const [radio2Step3, setRadio2Step3] = useState(false);
   const [radio3Step3, setRadio3Step3] = useState(false);
+  const [radio4Step3, setRadio4Step3] = useState(false);
   const [radio1Step4, setRadio1Step4] = useState(false);
   const [radio2Step4, setRadio2Step4] = useState(false);
   const [radio3Step4, setRadio3Step4] = useState(false);
@@ -63,6 +65,7 @@ const CreateTopicsWizard: React.FunctionComponent = () => {
     setRadio1Step3(false);
     setRadio2Step3(false);
     setRadio3Step3(false);
+    setRadio4Step3(false);
 
     const target = event.target;
     const value = target.type === 'radio' ? target.checked : target.value;
@@ -120,6 +123,10 @@ const CreateTopicsWizard: React.FunctionComponent = () => {
 
   const handleSwitchChange = isSwitchChecked => {
     setIsSwitchChecked(isSwitchChecked);
+  }
+
+  const closeWizard = () => {
+    console.log('close wizard');
   }
 
   const step1 = (
@@ -212,7 +219,15 @@ const CreateTopicsWizard: React.FunctionComponent = () => {
               id="radio-controlled-3"
               value="month"
             />
-            <div className="radio-description">
+            <Radio
+              isChecked={radio4Step3}
+              name="radio3"
+              onChange={handleChangeStep3}
+              label="h"
+              id="radio-controlled-4"
+              value="month"
+            />
+            <div className="radio-description radio-step-3">
               <Flex>
                 <FlexItem>
                   <Touchspin value={msgTouchspinValue}/>
@@ -252,7 +267,7 @@ const CreateTopicsWizard: React.FunctionComponent = () => {
           The partitions of each topic can be replicated across a configurable number of brokers.
         </Text>
         <Form>
-          <FormGroup label="Replicas">
+          <FormGroup label="Replicas" className="form-group-radio">
             <Radio
               isChecked={radio1Step4}
               name="radio4"
@@ -296,7 +311,7 @@ const CreateTopicsWizard: React.FunctionComponent = () => {
     { name: 'Topic name', component: step1 },
     { name: 'Partitions', component: step2 },
     { name: 'Message retention', component: step3 },
-    { name: 'Replicas', component: step4, nextButtonText: 'Finish' }
+    { name: 'Replicas', component: <CreateTopicStep4 onClose={closeWizard} msgRetentionValue={msgRetentionValue}  setMsgRetentionValue={setMsgRetentionValue}/>, nextButtonText: 'Finish' }
   ];
 
   const title = 'Create topics wizard';
@@ -321,6 +336,7 @@ const CreateTopicsWizard: React.FunctionComponent = () => {
       { isSwitchChecked ? (
         <PageSection variant={PageSectionVariants.light}>
           <CreateTopicsWizardMoreOptions/>
+          <Divider/>
         </PageSection>
       ) : (
         <PageSection variant={PageSectionVariants.light} padding={{ default: 'noPadding' }}>
