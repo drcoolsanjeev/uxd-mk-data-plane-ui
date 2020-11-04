@@ -1,8 +1,9 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import {
   Button,
   ButtonVariant,
   Card,
+  CardFooter,
   Divider,
   Label,
   Toolbar,
@@ -23,7 +24,7 @@ import SearchIcon from '@patternfly/react-icons/dist/js/icons/search-icon';
 import ExclamationCircleIcon from '@patternfly/react-icons/dist/js/icons/exclamation-circle-icon';
 import CheckCircleIcon from '@patternfly/react-icons/dist/js/icons/check-circle-icon';
 
-const ConsumerGroups: React.FunctionComponent = ({setConsumerGroupID, setIsExpanded2}) => {
+const TopicItemConsumerGroups: React.FunctionComponent = () => {
 
   const consumerGroupData = [
     {
@@ -55,44 +56,7 @@ const ConsumerGroups: React.FunctionComponent = ({setConsumerGroupID, setIsExpan
       "members": 1,
       "partitions": 0,
       "state": 'Stable'
-    },
-    {
-      "id": "Custom_5",
-      "members": 0,
-      "partitions": 0,
-      "state": 'Empty'
-    },
-    {
-      "id": "Custom_6",
-      "members": 2,
-      "partitions": 1,
-      "state": 'Stable'
-    },
-    {
-      "id": "Custom_7",
-      "members": 2,
-      "partitions": 2,
-      "state": 'Stable'
-    },
-    {
-      "id": "Custom_8",
-      "members": 2,
-      "partitions": 1,
-      "state": 'Stable'
-    },
-    {
-      "id": "Custom_9",
-      "members": 1,
-      "partitions": 2,
-      "state": 'Stable'
-    },
-    {
-      "id": "Custom_10",
-      "members": 2,
-      "partitions": 1,
-      "state": 'Stable'
-    },
-
+    }
   ]
 
   const columns = (
@@ -104,14 +68,9 @@ const ConsumerGroups: React.FunctionComponent = ({setConsumerGroupID, setIsExpan
     ]
   )
 
-  const onClickConsumerGroup = (id) => {
-    setConsumerGroupID(id);
-    setIsExpanded2(true);
-  }
-
   const rows = consumerGroupData.map(consumergroup => (
       [
-        { title: <Button variant="link" isInline onClick={() => onClickConsumerGroup(consumergroup.id)}>{consumergroup.id}</Button>},
+        consumergroup.id,
         consumergroup.members,
         consumergroup.partitions,
         { title: <Label color={consumergroup.state === "Stable" ? "green" : "red"} icon={consumergroup.state === "Stable" ? <CheckCircleIcon/> : <ExclamationCircleIcon/>}>{consumergroup.state}</Label>}
@@ -146,8 +105,9 @@ const ConsumerGroups: React.FunctionComponent = ({setConsumerGroupID, setIsExpan
           <TableBody />
         </Table>
       </Card>
+      <CardFooter></CardFooter>
     </>
   )
 }
 
-export { ConsumerGroups };
+export { TopicItemConsumerGroups };
