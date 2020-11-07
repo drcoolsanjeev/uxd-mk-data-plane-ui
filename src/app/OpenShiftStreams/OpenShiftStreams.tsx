@@ -86,7 +86,7 @@ const OpenShiftStreams: React.FunctionComponent = () => {
 
   const mainBreadcrumbs = (
     <Breadcrumb>
-      <BreadcrumbItem to="#">OpenShift Streams</BreadcrumbItem>
+      <BreadcrumbItem to="#">Red Hat OpenShift Streams for Apache Kafka</BreadcrumbItem>
       <BreadcrumbItem to="#" isActive>
         MK Cluster Instance
       </BreadcrumbItem>
