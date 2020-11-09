@@ -42,9 +42,9 @@ const routes: AppRouteConfig[] = [
     component: OpenShiftStreams,
     exact: true,
     isAsync: true,
-    label: 'OpenShift Streams',
+    label: 'Red Hat OpenShift Streams for Apache Kafka',
     path: '/openshiftstreams',
-    title: 'OpenShift Streams',
+    title: 'Red Hat OpenShift Streams for Apache Kafka',
   },
 ];
 

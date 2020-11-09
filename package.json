@@ -1,5 +1,5 @@
 {
-  "name": "strimzi-poc",
+  "name": "uxd-mk-data-plane",
   "version": "0.0.2",
   "description": "An open source build scaffolding utility for web apps.",
   "main": "server.js",
@@ -81,9 +81,9 @@
     "webpack-merge": "^5.2.0"
   },
   "dependencies": {
-    "@patternfly/react-core": "^4.63.3",
+    "@patternfly/react-core": "4.75.2",
     "@patternfly/react-icons": "^4.7.11",
-    "@patternfly/react-styles": "^4.7.8",
+    "@patternfly/react-styles": "4.7.12",
     "@patternfly/react-table": "^4.19.5",
     "express": "^4.17.1",
     "react": "^16.14.0",

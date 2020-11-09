@@ -1,4 +1,10 @@
+@import '~@patternfly/patternfly/components/CodeEditor/code-editor.css';
+
 .cluster-connection-drawer .pf-c-content {
   padding-top: 24px;
   padding-bottom: 24px;
+}
+
+.pf-c-code-editor__main {
+  height: 220px;
 }

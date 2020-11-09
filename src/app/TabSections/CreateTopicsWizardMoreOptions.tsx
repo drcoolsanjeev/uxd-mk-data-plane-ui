@@ -9,11 +9,14 @@ import {
   Flex,
   FlexItem,
   Form,
+  Grid,
+  GridItem,
   FormGroup,
   InputGroup,
   Popover,
   TextInput,
   PageSection,
+  PageGroup,
   PageSectionVariants,
   Radio,
   Select,
@@ -29,6 +32,8 @@ import {
 import { Touchspin } from '../CustomComponents/Touchspin';
 import './CreateTopicsWizard.css';
 import HelpIcon from '@patternfly/react-icons/dist/js/icons/help-icon';
+import { JumpLinks } from '../CustomComponents/JumpLinks';
+import { JumpLinksItem } from '../CustomComponents/JumpLinksItem';
 
 const CreateTopicsWizardMoreOptions: React.FunctionComponent = () => {
 
@@ -208,805 +213,883 @@ const CreateTopicsWizardMoreOptions: React.FunctionComponent = () => {
 
   return (
     <>
-      <div className="topics-wizard-content">
-      <TextContent>
-        <Text component={TextVariants.h2}>
-          Core configuration
-        </Text>
-        <Text component={TextVariants.p}>
-          We recommend you fill out and evaluate these details at a minimum before deploying your topic.
-        </Text>
-      </TextContent>
-      <Form>
-          <FormGroup
-            label="Topic name"
-            labelIcon={
-              <Popover
-                headerContent={<div>Test</div>}
-                bodyContent={<div>Test</div>}
-              >
-                <button
-                  aria-label="More info for name field"
-                  onClick={e => e.preventDefault()}
-                  aria-describedby="simple-form-name"
-                  className="pf-c-form__group-label-help"
-                >
-                  <HelpIcon noVerticalAlign />
-                </button>
-              </Popover>
-            }
-          >
-            <TextInput
-              isRequired
-              type="text"
-              id="input-1"
-              name="Topic name"
-              value={value1}
-              onChange={handleTextInputChange1}
-              label="Topic name"
-              placeholder="Test topic name"
-            />
-          </FormGroup>
-          <FormGroup
-            label="Partitions"
-            labelIcon={
-              <Popover
-                headerContent={<div>Test</div>}
-                bodyContent={<div>Test</div>}
-              >
-                <button
-                  aria-label="More info for name field"
-                  onClick={e => e.preventDefault()}
-                  aria-describedby="simple-form-name"
-                  className="pf-c-form__group-label-help"
-                >
-                  <HelpIcon noVerticalAlign />
-                </button>
-              </Popover>
-            }
-          >
-            <Touchspin value={1} maxWidth />
-          </FormGroup>
-          <FormGroup
-            label="Replicas"
-            labelIcon={
-              <Popover
-                headerContent={<div>Test</div>}
-                bodyContent={<div>Test</div>}
-              >
-                <button
-                  aria-label="More info for name field"
-                  onClick={e => e.preventDefault()}
-                  aria-describedby="simple-form-name"
-                  className="pf-c-form__group-label-help"
-                >
-                  <HelpIcon noVerticalAlign />
-                </button>
-              </Popover>
-            }
-          >
-            <Touchspin value={3} maxWidth />
-          </FormGroup>
-          <FormGroup
-            label="Minimum in-sync replicas"
-            labelIcon={
-              <Popover
-                headerContent={<div>Test</div>}
-                bodyContent={<div>Test</div>}
-              >
-                <button
-                  aria-label="More info for name field"
-                  onClick={e => e.preventDefault()}
-                  aria-describedby="simple-form-name"
-                  className="pf-c-form__group-label-help"
-                >
-                  <HelpIcon noVerticalAlign />
-                </button>
-              </Popover>
-            }
-          >
-            <Touchspin value={2} maxWidth />
-          </FormGroup>
-          <FormGroup
-            label="Retention time"
-            labelIcon={
-              <Popover
-                headerContent={<div>Test</div>}
-                bodyContent={<div>Test</div>}
-              >
-                <button
-                  aria-label="More info for name field"
-                  onClick={e => e.preventDefault()}
-                  aria-describedby="simple-form-name"
-                  className="pf-c-form__group-label-help"
-                >
-                  <HelpIcon noVerticalAlign />
-                </button>
-              </Popover>
-            }
-          >
-            <Flex>
-              <FlexItem grow={{ default: 'grow' }}>
-                <Touchspin value={7} maxWidth />
-              </FlexItem>
-              <FlexItem>
-                <Select
-                  variant={SelectVariant.single}
-                  aria-label="Select Input"
-                  onToggle={onToggle1}
-                  onSelect={onSelect1}
-                  selections={selected1}
-                  isOpen={isOpen1}
-                  // aria-labelledby={titleId}
-                >
-                  <SelectOption key={0} value="days" isPlaceholder/>
-                  <SelectOption key={1} value="weeks" />
-                  <SelectOption key={2} value="months" />
-                </Select>
-              </FlexItem>
-            </Flex>
-          </FormGroup>
-        </Form>
-
-      <TextContent>
-        <Text component={TextVariants.h2}>
-          Messages
-        </Text>
-        <Text component={TextVariants.p}>
-          These details control how your messages will be handled in the cluster.
-        </Text>
-      </TextContent>
-      <Form>
-        <FormGroup
-          className="topics-wizard-content"
-          label="Maximum message size"
-          labelIcon={
-            <Popover
-              headerContent={<div>Test</div>}
-              bodyContent={<div>Test</div>}
+      <Grid hasGutter>
+        <GridItem span={3}>
+          <JumpLinks isVertical label="Jump to section" scrollableSelector="#scrollable-element">
+            <JumpLinksItem
+              isActive
+              key={0}
+              href="#coreConfiguration"
             >
-              <button
-                aria-label="More info for name field"
-                onClick={e => e.preventDefault()}
-                aria-describedby="simple-form-name"
-                className="pf-c-form__group-label-help"
-              >
-                <HelpIcon noVerticalAlign />
-              </button>
-            </Popover>
-          }
-        >
-          <Flex>
-            <FlexItem grow={{ default: 'grow' }}>
-              <Touchspin value={100012} maxWidth />
-            </FlexItem>
-            <FlexItem>
-              <Select
-                variant={SelectVariant.single}
-                aria-label="Select Input"
-                onToggle={onToggle2}
-                onSelect={onSelect2}
-                selections={selected2}
-                isOpen={isOpen2}
-                // aria-labelledby={titleId}
-              >
-                <SelectOption key={0} value="bytes" isPlaceholder/>
-                <SelectOption key={1} value="kilobytes" />
-                <SelectOption key={2} value="megabytes" />
-              </Select>
-            </FlexItem>
-          </Flex>
-        </FormGroup>
-          <FormGroup
-            label="Message timestamp"
-            labelIcon={
-              <Popover
-                headerContent={<div>Test</div>}
-                bodyContent={<div>Test</div>}
-              >
-                <button
-                  aria-label="More info for name field"
-                  onClick={e => e.preventDefault()}
-                  aria-describedby="simple-form-name"
-                  className="pf-c-form__group-label-help"
-                >
-                  <HelpIcon noVerticalAlign />
-                </button>
-              </Popover>
-            }
-          >
-            <Select
-                variant={SelectVariant.single}
-                aria-label="Select Input"
-                onToggle={onToggle3}
-                onSelect={onSelect3}
-                selections={selected3}
-                isOpen={isOpen3}
-                // aria-labelledby={titleId}
-              >
-                <SelectOption key={0} value="CreateTime" isPlaceholder/>
-                <SelectOption key={1} value="Unknown" />
-              </Select>
-          </FormGroup>
-        </Form>
+                Core configuration
+            </JumpLinksItem>
+            <JumpLinksItem key={1} href="#messages">
+              Messages
+            </JumpLinksItem>
+            <JumpLinksItem key={2} href="#log">
+              Log
+            </JumpLinksItem>
+            <JumpLinksItem key={3} href="#replication">
+              Replication
+            </JumpLinksItem>
+            <JumpLinksItem key={4} href="#cleanup">
+              Cleanup
+            </JumpLinksItem>
+            <JumpLinksItem key={5} href="#index">
+              Index
+            </JumpLinksItem>
+            <JumpLinksItem key={6} href="#flush">
+              Flush
+            </JumpLinksItem>
+          </JumpLinks>
 
-        <TextContent>
-          <Text component={TextVariants.h2}>
-            Log
-          </Text>
-          <Text component={TextVariants.p}>
-            Messages are continually appended to the partition’s log. This is when they are assigned their offset. These details define how your log is handled.
-          </Text>
-        </TextContent>
+        </GridItem>
+        <GridItem span={9}>
+          <div className="topics-wizard-content">
+          <PageGroup hasOverflowScroll  id="scrollable-element">
+            <PageSection>
 
-        <Form>
-          <FormGroup
-            className="topics-wizard-content"
-            label="Cleanup policy"
-            labelIcon={
-              <Popover
-                headerContent={<div>Test</div>}
-                bodyContent={<div>Test</div>}
+          <TextContent>
+            <Text component={TextVariants.h2} tabIndex={-1} id="coreConfiguration">
+              Core configuration
+            </Text>
+            <Text component={TextVariants.p}>
+              We recommend you fill out and evaluate these details at a minimum before deploying your topic.
+            </Text>
+          </TextContent>
+          <Form>
+              <FormGroup
+                label="Topic name"
+                labelIcon={
+                  <Popover
+                    headerContent={<div>Test</div>}
+                    bodyContent={<div>Test</div>}
+                  >
+                    <button
+                      aria-label="More info for name field"
+                      onClick={e => e.preventDefault()}
+                      aria-describedby="simple-form-name"
+                      className="pf-c-form__group-label-help"
+                    >
+                      <HelpIcon noVerticalAlign />
+                    </button>
+                  </Popover>
+                }
               >
-                <button
-                  aria-label="More info for name field"
-                  onClick={e => e.preventDefault()}
-                  aria-describedby="simple-form-name"
-                  className="pf-c-form__group-label-help"
+                <TextInput
+                  isRequired
+                  type="text"
+                  id="input-1"
+                  name="Topic name"
+                  value={value1}
+                  onChange={handleTextInputChange1}
+                  label="Topic name"
+                  placeholder="Test topic name"
+                />
+              </FormGroup>
+              <FormGroup
+                label="Partitions"
+                labelIcon={
+                  <Popover
+                    headerContent={<div>Test</div>}
+                    bodyContent={<div>Test</div>}
+                  >
+                    <button
+                      aria-label="More info for name field"
+                      onClick={e => e.preventDefault()}
+                      aria-describedby="simple-form-name"
+                      className="pf-c-form__group-label-help"
+                    >
+                      <HelpIcon noVerticalAlign />
+                    </button>
+                  </Popover>
+                }
+              >
+                <Touchspin value={1} maxWidth />
+              </FormGroup>
+              <FormGroup
+                label="Replicas"
+                labelIcon={
+                  <Popover
+                    headerContent={<div>Test</div>}
+                    bodyContent={<div>Test</div>}
+                  >
+                    <button
+                      aria-label="More info for name field"
+                      onClick={e => e.preventDefault()}
+                      aria-describedby="simple-form-name"
+                      className="pf-c-form__group-label-help"
+                    >
+                      <HelpIcon noVerticalAlign />
+                    </button>
+                  </Popover>
+                }
+              >
+                <Touchspin value={3} maxWidth />
+              </FormGroup>
+              <FormGroup
+                label="Minimum in-sync replicas"
+                labelIcon={
+                  <Popover
+                    headerContent={<div>Test</div>}
+                    bodyContent={<div>Test</div>}
+                  >
+                    <button
+                      aria-label="More info for name field"
+                      onClick={e => e.preventDefault()}
+                      aria-describedby="simple-form-name"
+                      className="pf-c-form__group-label-help"
+                    >
+                      <HelpIcon noVerticalAlign />
+                    </button>
+                  </Popover>
+                }
+              >
+                <Touchspin value={2} maxWidth />
+              </FormGroup>
+              <FormGroup
+                label="Retention time"
+                labelIcon={
+                  <Popover
+                    headerContent={<div>Test</div>}
+                    bodyContent={<div>Test</div>}
+                  >
+                    <button
+                      aria-label="More info for name field"
+                      onClick={e => e.preventDefault()}
+                      aria-describedby="simple-form-name"
+                      className="pf-c-form__group-label-help"
+                    >
+                      <HelpIcon noVerticalAlign />
+                    </button>
+                  </Popover>
+                }
+              >
+                <Flex>
+                  <FlexItem grow={{ default: 'grow' }}>
+                    <Touchspin value={7} maxWidth />
+                  </FlexItem>
+                  <FlexItem>
+                    <Select
+                      variant={SelectVariant.single}
+                      aria-label="Select Input"
+                      onToggle={onToggle1}
+                      onSelect={onSelect1}
+                      selections={selected1}
+                      isOpen={isOpen1}
+                      // aria-labelledby={titleId}
+                    >
+                      <SelectOption key={0} value="milliseconds"/>
+                      <SelectOption key={1} value="seconds" />
+                      <SelectOption key={2} value="minutes" />
+                      <SelectOption key={3} value="hours" />
+                      <SelectOption key={4} value="days" isPlaceholder/>
+                      <SelectOption key={2} value="weeks" />
+                      <SelectOption key={3} value="months" />
+                    </Select>
+                  </FlexItem>
+                </Flex>
+              </FormGroup>
+            </Form>
+
+          <TextContent>
+            <Text component={TextVariants.h2} tabIndex={-1} id="messages">
+              Messages
+            </Text>
+            <Text component={TextVariants.p}>
+              These details control how your messages will be handled in the cluster.
+            </Text>
+          </TextContent>
+          <Form>
+            <FormGroup
+              className="topics-wizard-content"
+              label="Maximum message size"
+              labelIcon={
+                <Popover
+                  headerContent={<div>Test</div>}
+                  bodyContent={<div>Test</div>}
                 >
-                  <HelpIcon noVerticalAlign />
-                </button>
-              </Popover>
-            }
-          >
-            <Select
-              variant={SelectVariant.single}
-              aria-label="Select Input"
-              onToggle={onToggle4}
-              onSelect={onSelect4}
-              selections={selected4}
-              isOpen={isOpen4}
-              // aria-labelledby={titleId}
+                  <button
+                    aria-label="More info for name field"
+                    onClick={e => e.preventDefault()}
+                    aria-describedby="simple-form-name"
+                    className="pf-c-form__group-label-help"
+                  >
+                    <HelpIcon noVerticalAlign />
+                  </button>
+                </Popover>
+              }
             >
-              <SelectOption key={0} value="delete" isPlaceholder/>
-              <SelectOption key={1} value="unknown" />
-            </Select>
-          </FormGroup>
-
-          <FormGroup
-            className="topics-wizard-content"
-            label="Retention bytes"
-            labelIcon={
-              <Popover
-                headerContent={<div>Test</div>}
-                bodyContent={<div>Test</div>}
+              <Flex>
+                <FlexItem grow={{ default: 'grow' }}>
+                  <Touchspin value={100012} maxWidth />
+                </FlexItem>
+                <FlexItem>
+                  <Select
+                    variant={SelectVariant.single}
+                    aria-label="Select Input"
+                    onToggle={onToggle2}
+                    onSelect={onSelect2}
+                    selections={selected2}
+                    isOpen={isOpen2}
+                    // aria-labelledby={titleId}
+                  >
+                    <SelectOption key={0} value="bytes" isPlaceholder/>
+                    <SelectOption key={1} value="kilobytes" />
+                    <SelectOption key={2} value="megabytes" />
+                    <SelectOption key={3} value="gigabytes" />
+                    <SelectOption key={4} value="terabytes" />
+                  </Select>
+                </FlexItem>
+              </Flex>
+            </FormGroup>
+              <FormGroup
+                label="Message timestamp"
+                labelIcon={
+                  <Popover
+                    headerContent={<div>Test</div>}
+                    bodyContent={<div>Test</div>}
+                  >
+                    <button
+                      aria-label="More info for name field"
+                      onClick={e => e.preventDefault()}
+                      aria-describedby="simple-form-name"
+                      className="pf-c-form__group-label-help"
+                    >
+                      <HelpIcon noVerticalAlign />
+                    </button>
+                  </Popover>
+                }
               >
-                <button
-                  aria-label="More info for name field"
-                  onClick={e => e.preventDefault()}
-                  aria-describedby="simple-form-name"
-                  className="pf-c-form__group-label-help"
-                >
-                  <HelpIcon noVerticalAlign />
-                </button>
-              </Popover>
-            }
-          >
-            <Flex>
-              <FlexItem grow={{ default: 'grow' }}>
-                <Touchspin value={-1} maxWidth />
-              </FlexItem>
-              <FlexItem>
+                <Select
+                    variant={SelectVariant.single}
+                    aria-label="Select Input"
+                    onToggle={onToggle3}
+                    onSelect={onSelect3}
+                    selections={selected3}
+                    isOpen={isOpen3}
+                    // aria-labelledby={titleId}
+                  >
+                    <SelectOption key={0} value="CreateTime" isPlaceholder/>
+                    <SelectOption key={1} value="LogAppendTime" />
+                  </Select>
+              </FormGroup>
+            </Form>
+
+            <TextContent>
+              <Text component={TextVariants.h2} tabIndex={-1} id="log">
+                Log
+              </Text>
+              <Text component={TextVariants.p}>
+                Messages are continually appended to the partition’s log. This is when they are assigned their offset. These details define how your log is handled.
+              </Text>
+            </TextContent>
+
+            <Form>
+              <FormGroup
+                className="topics-wizard-content"
+                label="Cleanup policy"
+                labelIcon={
+                  <Popover
+                    headerContent={<div>Test</div>}
+                    bodyContent={<div>Test</div>}
+                  >
+                    <button
+                      aria-label="More info for name field"
+                      onClick={e => e.preventDefault()}
+                      aria-describedby="simple-form-name"
+                      className="pf-c-form__group-label-help"
+                    >
+                      <HelpIcon noVerticalAlign />
+                    </button>
+                  </Popover>
+                }
+              >
                 <Select
                   variant={SelectVariant.single}
                   aria-label="Select Input"
-                  onToggle={onToggle5}
-                  onSelect={onSelect5}
-                  selections={selected5}
-                  isOpen={isOpen5}
+                  onToggle={onToggle4}
+                  onSelect={onSelect4}
+                  selections={selected4}
+                  isOpen={isOpen4}
                   // aria-labelledby={titleId}
                 >
-                  <SelectOption key={0} value="bytes" isPlaceholder/>
-                  <SelectOption key={1} value="kilobytes" />
-                  <SelectOption key={2} value="megabytes" />
+                  <SelectOption key={0} value="compact" />
+                  <SelectOption key={1} value="delete" isPlaceholder/>
+                  <SelectOption key={2} value="compact, delete" />
+                  <SelectOption key={3} value="delete, compact" />
                 </Select>
-              </FlexItem>
-            </Flex>
-          </FormGroup>
+              </FormGroup>
 
-          <FormGroup
-            className="topics-wizard-content"
-            label="Log segment types"
-            labelIcon={
-              <Popover
-                headerContent={<div>Test</div>}
-                bodyContent={<div>Test</div>}
+              <FormGroup
+                className="topics-wizard-content"
+                label="Retention bytes"
+                labelIcon={
+                  <Popover
+                    headerContent={<div>Test</div>}
+                    bodyContent={<div>Test</div>}
+                  >
+                    <button
+                      aria-label="More info for name field"
+                      onClick={e => e.preventDefault()}
+                      aria-describedby="simple-form-name"
+                      className="pf-c-form__group-label-help"
+                    >
+                      <HelpIcon noVerticalAlign />
+                    </button>
+                  </Popover>
+                }
               >
-                <button
-                  aria-label="More info for name field"
-                  onClick={e => e.preventDefault()}
-                  aria-describedby="simple-form-name"
-                  className="pf-c-form__group-label-help"
-                >
-                  <HelpIcon noVerticalAlign />
-                </button>
-              </Popover>
-            }
-          >
-            <Flex>
-              <FlexItem grow={{ default: 'grow' }}>
-                <Touchspin value={10737441824} maxWidth />
-              </FlexItem>
-              <FlexItem>
-                <Select
-                  variant={SelectVariant.single}
-                  aria-label="Select Input"
-                  onToggle={onToggle6}
-                  onSelect={onSelect6}
-                  selections={selected6}
-                  isOpen={isOpen6}
-                  // aria-labelledby={titleId}
-                >
-                  <SelectOption key={0} value="bytes" isPlaceholder/>
-                  <SelectOption key={1} value="kilobytes" />
-                  <SelectOption key={2} value="megabytes" />
-                </Select>
-              </FlexItem>
-            </Flex>
-          </FormGroup>
-        </Form>
+                <Flex>
+                  <FlexItem grow={{ default: 'grow' }}>
+                    <Touchspin value={-1} maxWidth />
+                  </FlexItem>
+                  <FlexItem>
+                    <Select
+                      variant={SelectVariant.single}
+                      aria-label="Select Input"
+                      onToggle={onToggle5}
+                      onSelect={onSelect5}
+                      selections={selected5}
+                      isOpen={isOpen5}
+                      // aria-labelledby={titleId}
+                    >
+                      <SelectOption key={0} value="bytes" isPlaceholder/>
+                      <SelectOption key={1} value="kilobytes" />
+                      <SelectOption key={2} value="megabytes" />
+                      <SelectOption key={3} value="gigabytes" />
+                      <SelectOption key={4} value="terabytes" />
+                    </Select>
+                  </FlexItem>
+                </Flex>
+              </FormGroup>
 
-        <TextContent>
-          <Text component={TextVariants.h2}>
-            Replication
-          </Text>
-          <Text component={TextVariants.p}>
-            These details control the behavior of your replicas. Each of these parameters has an impact on every replica created in this topic.
-          </Text>
-        </TextContent>
-
-        <Form>
-          <Checkbox label="Allow unclean leader election" aria-label="uncontrolled checkbox example" id="check-5" />
-          <FormGroup
-            className="topics-wizard-content"
-            label="Follower replication throttled replicas"
-            labelIcon={
-              <Popover
-                headerContent={<div>Test</div>}
-                bodyContent={<div>Test</div>}
+              <FormGroup
+                className="topics-wizard-content"
+                label="Log segment types"
+                labelIcon={
+                  <Popover
+                    headerContent={<div>Test</div>}
+                    bodyContent={<div>Test</div>}
+                  >
+                    <button
+                      aria-label="More info for name field"
+                      onClick={e => e.preventDefault()}
+                      aria-describedby="simple-form-name"
+                      className="pf-c-form__group-label-help"
+                    >
+                      <HelpIcon noVerticalAlign />
+                    </button>
+                  </Popover>
+                }
               >
-                <button
-                  aria-label="More info for name field"
-                  onClick={e => e.preventDefault()}
-                  aria-describedby="simple-form-name"
-                  className="pf-c-form__group-label-help"
-                >
-                  <HelpIcon noVerticalAlign />
-                </button>
-              </Popover>
-            }
-          >
-            <InputGroup>
-              <TextInput id="textInput6" type="text" aria-label="Text" />
-            </InputGroup>
-          </FormGroup>
+                <Flex>
+                  <FlexItem grow={{ default: 'grow' }}>
+                    <Touchspin value={10737441824} maxWidth />
+                  </FlexItem>
+                  <FlexItem>
+                    <Select
+                      variant={SelectVariant.single}
+                      aria-label="Select Input"
+                      onToggle={onToggle6}
+                      onSelect={onSelect6}
+                      selections={selected6}
+                      isOpen={isOpen6}
+                      // aria-labelledby={titleId}
+                    >
+                      <SelectOption key={0} value="bytes" isPlaceholder/>
+                      <SelectOption key={1} value="kilobytes" />
+                      <SelectOption key={2} value="megabytes" />
+                      <SelectOption key={3} value="gigabytes" />
+                      <SelectOption key={4} value="terabytes" />
+                    </Select>
+                  </FlexItem>
+                </Flex>
+              </FormGroup>
+            </Form>
 
-          <FormGroup
-            className="topics-wizard-content"
-            label="Leader replication throttled replicas"
-            labelIcon={
-              <Popover
-                headerContent={<div>Test</div>}
-                bodyContent={<div>Test</div>}
+            <TextContent>
+              <Text component={TextVariants.h2} tabIndex={-1} id="replication">
+                Replication
+              </Text>
+              <Text component={TextVariants.p}>
+                These details control the behavior of your replicas. Each of these parameters has an impact on every replica created in this topic.
+              </Text>
+            </TextContent>
+
+            <Form>
+              <Checkbox label="Allow unclean leader election" aria-label="uncontrolled checkbox example" id="check-5" />
+              <FormGroup
+                className="topics-wizard-content"
+                label="Follower replication throttled replicas"
+                labelIcon={
+                  <Popover
+                    headerContent={<div>Test</div>}
+                    bodyContent={<div>Test</div>}
+                  >
+                    <button
+                      aria-label="More info for name field"
+                      onClick={e => e.preventDefault()}
+                      aria-describedby="simple-form-name"
+                      className="pf-c-form__group-label-help"
+                    >
+                      <HelpIcon noVerticalAlign />
+                    </button>
+                  </Popover>
+                }
               >
-                <button
-                  aria-label="More info for name field"
-                  onClick={e => e.preventDefault()}
-                  aria-describedby="simple-form-name"
-                  className="pf-c-form__group-label-help"
-                >
-                  <HelpIcon noVerticalAlign />
-                </button>
-              </Popover>
-            }
-          >
-            <InputGroup>
-              <TextInput id="textInput6" type="text" aria-label="Text" />
-            </InputGroup>
-          </FormGroup>
-        </Form>
+                <InputGroup>
+                  <TextInput id="textInput6" type="text" aria-label="Text" />
+                </InputGroup>
+              </FormGroup>
 
-        <TextContent>
-          <Text component={TextVariants.h2}>
-            Cleanup
-          </Text>
-          <Text component={TextVariants.p}>
-            These details control the cleanup processing of the log.
-          </Text>
-        </TextContent>
-
-        <Form>
-          <FormGroup
-            className="topics-wizard-content"
-            label="Minimum cleanable dirty ratio"
-            labelIcon={
-              <Popover
-                headerContent={<div>Test</div>}
-                bodyContent={<div>Test</div>}
+              <FormGroup
+                className="topics-wizard-content"
+                label="Leader replication throttled replicas"
+                labelIcon={
+                  <Popover
+                    headerContent={<div>Test</div>}
+                    bodyContent={<div>Test</div>}
+                  >
+                    <button
+                      aria-label="More info for name field"
+                      onClick={e => e.preventDefault()}
+                      aria-describedby="simple-form-name"
+                      className="pf-c-form__group-label-help"
+                    >
+                      <HelpIcon noVerticalAlign />
+                    </button>
+                  </Popover>
+                }
               >
-                <button
-                  aria-label="More info for name field"
-                  onClick={e => e.preventDefault()}
-                  aria-describedby="simple-form-name"
-                  className="pf-c-form__group-label-help"
-                >
-                  <HelpIcon noVerticalAlign />
-                </button>
-              </Popover>
-            }
-          >
-            <Touchspin value={9007199254740991} maxWidth />
-          </FormGroup>
+                <InputGroup>
+                  <TextInput id="textInput6" type="text" aria-label="Text" />
+                </InputGroup>
+              </FormGroup>
+            </Form>
 
-          <FormGroup
-            className="topics-wizard-content"
-            label="Minimum compaction lag time"
-            labelIcon={
-              <Popover
-                headerContent={<div>Test</div>}
-                bodyContent={<div>Test</div>}
+            <TextContent>
+              <Text component={TextVariants.h2} tabIndex={-1} id="cleanup">
+                Cleanup
+              </Text>
+              <Text component={TextVariants.p}>
+                These details control the cleanup processing of the log.
+              </Text>
+            </TextContent>
+
+            <Form>
+              <FormGroup
+                className="topics-wizard-content"
+                label="Minimum cleanable dirty ratio"
+                labelIcon={
+                  <Popover
+                    headerContent={<div>Test</div>}
+                    bodyContent={<div>Test</div>}
+                  >
+                    <button
+                      aria-label="More info for name field"
+                      onClick={e => e.preventDefault()}
+                      aria-describedby="simple-form-name"
+                      className="pf-c-form__group-label-help"
+                    >
+                      <HelpIcon noVerticalAlign />
+                    </button>
+                  </Popover>
+                }
               >
-                <button
-                  aria-label="More info for name field"
-                  onClick={e => e.preventDefault()}
-                  aria-describedby="simple-form-name"
-                  className="pf-c-form__group-label-help"
-                >
-                  <HelpIcon noVerticalAlign />
-                </button>
-              </Popover>
-            }
-          >
-            <Flex>
-              <FlexItem grow={{ default: 'grow' }}>
-                <Touchspin value={0} maxWidth />
-              </FlexItem>
-              <FlexItem>
-                <Select
-                  variant={SelectVariant.single}
-                  aria-label="Select Input"
-                  onToggle={onToggle7}
-                  onSelect={onSelect7}
-                  selections={selected7}
-                  isOpen={isOpen7}
-                  // aria-labelledby={titleId}
-                >
-                  <SelectOption key={0} value="milliseconds" isPlaceholder/>
-                  <SelectOption key={1} value="seconds" />
-                  <SelectOption key={2} value="minutes" />
-                </Select>
-              </FlexItem>
-            </Flex>
-          </FormGroup>
+                <Touchspin value={9007199254740991} maxWidth />
+              </FormGroup>
 
-          <FormGroup
-            className="topics-wizard-content"
-            label="Segment time"
-            labelIcon={
-              <Popover
-                headerContent={<div>Test</div>}
-                bodyContent={<div>Test</div>}
+              <FormGroup
+                className="topics-wizard-content"
+                label="Minimum compaction lag time"
+                labelIcon={
+                  <Popover
+                    headerContent={<div>Test</div>}
+                    bodyContent={<div>Test</div>}
+                  >
+                    <button
+                      aria-label="More info for name field"
+                      onClick={e => e.preventDefault()}
+                      aria-describedby="simple-form-name"
+                      className="pf-c-form__group-label-help"
+                    >
+                      <HelpIcon noVerticalAlign />
+                    </button>
+                  </Popover>
+                }
               >
-                <button
-                  aria-label="More info for name field"
-                  onClick={e => e.preventDefault()}
-                  aria-describedby="simple-form-name"
-                  className="pf-c-form__group-label-help"
-                >
-                  <HelpIcon noVerticalAlign />
-                </button>
-              </Popover>
-            }
-          >
-            <Flex>
-              <FlexItem grow={{ default: 'grow' }}>
-                <Touchspin value={6048000} maxWidth />
-              </FlexItem>
-              <FlexItem>
-                <Select
-                  variant={SelectVariant.single}
-                  aria-label="Select Input"
-                  onToggle={onToggle8}
-                  onSelect={onSelect8}
-                  selections={selected8}
-                  isOpen={isOpen8}
-                  // aria-labelledby={titleId}
-                >
-                  <SelectOption key={0} value="milliseconds" isPlaceholder/>
-                  <SelectOption key={1} value="seconds" />
-                  <SelectOption key={2} value="minutes" />
-                </Select>
-              </FlexItem>
-            </Flex>
-          </FormGroup>
+                <Flex>
+                  <FlexItem grow={{ default: 'grow' }}>
+                    <Touchspin value={0} maxWidth />
+                  </FlexItem>
+                  <FlexItem>
+                    <Select
+                      variant={SelectVariant.single}
+                      aria-label="Select Input"
+                      onToggle={onToggle7}
+                      onSelect={onSelect7}
+                      selections={selected7}
+                      isOpen={isOpen7}
+                      // aria-labelledby={titleId}
+                    >
+                      <SelectOption key={0} value="milliseconds" isPlaceholder/>
+                      <SelectOption key={1} value="seconds" />
+                      <SelectOption key={2} value="minutes" />
+                      <SelectOption key={3} value="hours" />
+                      <SelectOption key={4} value="days" />
+                      <SelectOption key={5} value="weeks" />
+                      <SelectOption key={6} value="months" />
+                    </Select>
+                  </FlexItem>
+                </Flex>
+              </FormGroup>
 
-          <FormGroup
-            className="topics-wizard-content"
-            label="Segment jitter time"
-            labelIcon={
-              <Popover
-                headerContent={<div>Test</div>}
-                bodyContent={<div>Test</div>}
+              <FormGroup
+                className="topics-wizard-content"
+                label="Segment time"
+                labelIcon={
+                  <Popover
+                    headerContent={<div>Test</div>}
+                    bodyContent={<div>Test</div>}
+                  >
+                    <button
+                      aria-label="More info for name field"
+                      onClick={e => e.preventDefault()}
+                      aria-describedby="simple-form-name"
+                      className="pf-c-form__group-label-help"
+                    >
+                      <HelpIcon noVerticalAlign />
+                    </button>
+                  </Popover>
+                }
               >
-                <button
-                  aria-label="More info for name field"
-                  onClick={e => e.preventDefault()}
-                  aria-describedby="simple-form-name"
-                  className="pf-c-form__group-label-help"
-                >
-                  <HelpIcon noVerticalAlign />
-                </button>
-              </Popover>
-            }
-          >
-            <Flex>
-              <FlexItem grow={{ default: 'grow' }}>
-                <Touchspin value={0} maxWidth />
-              </FlexItem>
-              <FlexItem>
-                <Select
-                  variant={SelectVariant.single}
-                  aria-label="Select Input"
-                  onToggle={onToggle9}
-                  onSelect={onSelect9}
-                  selections={selected9}
-                  isOpen={isOpen9}
-                  // aria-labelledby={titleId}
-                >
-                  <SelectOption key={0} value="milliseconds" isPlaceholder/>
-                  <SelectOption key={1} value="seconds" />
-                  <SelectOption key={2} value="minutes" />
-                </Select>
-              </FlexItem>
-            </Flex>
-          </FormGroup>
+                <Flex>
+                  <FlexItem grow={{ default: 'grow' }}>
+                    <Touchspin value={6048000} maxWidth />
+                  </FlexItem>
+                  <FlexItem>
+                    <Select
+                      variant={SelectVariant.single}
+                      aria-label="Select Input"
+                      onToggle={onToggle8}
+                      onSelect={onSelect8}
+                      selections={selected8}
+                      isOpen={isOpen8}
+                      // aria-labelledby={titleId}
+                    >
+                      <SelectOption key={0} value="milliseconds" isPlaceholder/>
+                      <SelectOption key={1} value="seconds" />
+                      <SelectOption key={2} value="minutes" />
+                      <SelectOption key={3} value="hours" />
+                      <SelectOption key={4} value="days" />
+                      <SelectOption key={5} value="weeks" />
+                      <SelectOption key={6} value="months" />
+                    </Select>
+                  </FlexItem>
+                </Flex>
+              </FormGroup>
 
-          <FormGroup
-            className="topics-wizard-content"
-            label="File delete delay"
-            labelIcon={
-              <Popover
-                headerContent={<div>Test</div>}
-                bodyContent={<div>Test</div>}
+              <FormGroup
+                className="topics-wizard-content"
+                label="Segment jitter time"
+                labelIcon={
+                  <Popover
+                    headerContent={<div>Test</div>}
+                    bodyContent={<div>Test</div>}
+                  >
+                    <button
+                      aria-label="More info for name field"
+                      onClick={e => e.preventDefault()}
+                      aria-describedby="simple-form-name"
+                      className="pf-c-form__group-label-help"
+                    >
+                      <HelpIcon noVerticalAlign />
+                    </button>
+                  </Popover>
+                }
               >
-                <button
-                  aria-label="More info for name field"
-                  onClick={e => e.preventDefault()}
-                  aria-describedby="simple-form-name"
-                  className="pf-c-form__group-label-help"
-                >
-                  <HelpIcon noVerticalAlign />
-                </button>
-              </Popover>
-            }
-          >
-            <Flex>
-              <FlexItem grow={{ default: 'grow' }}>
-                <Touchspin value={6000} maxWidth />
-              </FlexItem>
-              <FlexItem>
-                <Select
-                  variant={SelectVariant.single}
-                  aria-label="Select Input"
-                  onToggle={onToggle10}
-                  onSelect={onSelect10}
-                  selections={selected10}
-                  isOpen={isOpen10}
-                  // aria-labelledby={titleId}
-                >
-                  <SelectOption key={0} value="milliseconds" isPlaceholder/>
-                  <SelectOption key={1} value="seconds" />
-                  <SelectOption key={2} value="minutes" />
-                </Select>
-              </FlexItem>
-            </Flex>
-          </FormGroup>
-          <Checkbox label="Preallocation log segment files" aria-label="uncontrolled checkbox example" id="check-5" />
-        </Form>
+                <Flex>
+                  <FlexItem grow={{ default: 'grow' }}>
+                    <Touchspin value={0} maxWidth />
+                  </FlexItem>
+                  <FlexItem>
+                    <Select
+                      variant={SelectVariant.single}
+                      aria-label="Select Input"
+                      onToggle={onToggle9}
+                      onSelect={onSelect9}
+                      selections={selected9}
+                      isOpen={isOpen9}
+                      // aria-labelledby={titleId}
+                    >
+                      <SelectOption key={0} value="milliseconds" isPlaceholder/>
+                      <SelectOption key={1} value="seconds" />
+                      <SelectOption key={2} value="minutes" />
+                      <SelectOption key={3} value="hours" />
+                      <SelectOption key={4} value="days" />
+                      <SelectOption key={5} value="weeks" />
+                      <SelectOption key={6} value="months" />
+                    </Select>
+                  </FlexItem>
+                </Flex>
+              </FormGroup>
 
-        <TextContent>
-          <Text component={TextVariants.h2}>
-            Index
-          </Text>
-          <Text component={TextVariants.p}>
-            These details control the indexing of the log.
-          </Text>
-        </TextContent>
-
-        <Form>
-          <FormGroup
-            className="topics-wizard-content"
-            label="Index interval bytes"
-            labelIcon={
-              <Popover
-                headerContent={<div>Test</div>}
-                bodyContent={<div>Test</div>}
+              <FormGroup
+                className="topics-wizard-content"
+                label="File delete delay"
+                labelIcon={
+                  <Popover
+                    headerContent={<div>Test</div>}
+                    bodyContent={<div>Test</div>}
+                  >
+                    <button
+                      aria-label="More info for name field"
+                      onClick={e => e.preventDefault()}
+                      aria-describedby="simple-form-name"
+                      className="pf-c-form__group-label-help"
+                    >
+                      <HelpIcon noVerticalAlign />
+                    </button>
+                  </Popover>
+                }
               >
-                <button
-                  aria-label="More info for name field"
-                  onClick={e => e.preventDefault()}
-                  aria-describedby="simple-form-name"
-                  className="pf-c-form__group-label-help"
-                >
-                  <HelpIcon noVerticalAlign />
-                </button>
-              </Popover>
-            }
-          >
-            <Flex>
-              <FlexItem grow={{ default: 'grow' }}>
-                <Touchspin value={4096} maxWidth />
-              </FlexItem>
-              <FlexItem>
-                <Select
-                  variant={SelectVariant.single}
-                  aria-label="Select Input"
-                  onToggle={onToggle11}
-                  onSelect={onSelect11}
-                  selections={selected11}
-                  isOpen={isOpen11}
-                  // aria-labelledby={titleId}
-                >
-                  <SelectOption key={0} value="bytes" isPlaceholder/>
-                  <SelectOption key={1} value="kilobytes" />
-                  <SelectOption key={2} value="megabytes" />
-                </Select>
-              </FlexItem>
-            </Flex>
-          </FormGroup>
+                <Flex>
+                  <FlexItem grow={{ default: 'grow' }}>
+                    <Touchspin value={6000} maxWidth />
+                  </FlexItem>
+                  <FlexItem>
+                    <Select
+                      variant={SelectVariant.single}
+                      aria-label="Select Input"
+                      onToggle={onToggle10}
+                      onSelect={onSelect10}
+                      selections={selected10}
+                      isOpen={isOpen10}
+                      // aria-labelledby={titleId}
+                    >
+                      <SelectOption key={0} value="milliseconds" isPlaceholder/>
+                      <SelectOption key={1} value="seconds" />
+                      <SelectOption key={2} value="minutes" />
+                      <SelectOption key={3} value="hours" />
+                      <SelectOption key={4} value="days" />
+                      <SelectOption key={5} value="weeks" />
+                      <SelectOption key={6} value="months" />
+                    </Select>
+                  </FlexItem>
+                </Flex>
+              </FormGroup>
+              <Checkbox label="Preallocation log segment files" aria-label="uncontrolled checkbox example" id="check-5" />
+            </Form>
 
-          <FormGroup
-            className="topics-wizard-content"
-            label="Index interval bytes"
-            labelIcon={
-              <Popover
-                headerContent={<div>Test</div>}
-                bodyContent={<div>Test</div>}
+            <TextContent>
+              <Text component={TextVariants.h2} tabIndex={-1} id="index">
+                Index
+              </Text>
+              <Text component={TextVariants.p}>
+                These details control the indexing of the log.
+              </Text>
+            </TextContent>
+
+            <Form>
+              <FormGroup
+                className="topics-wizard-content"
+                label="Index interval bytes"
+                labelIcon={
+                  <Popover
+                    headerContent={<div>Test</div>}
+                    bodyContent={<div>Test</div>}
+                  >
+                    <button
+                      aria-label="More info for name field"
+                      onClick={e => e.preventDefault()}
+                      aria-describedby="simple-form-name"
+                      className="pf-c-form__group-label-help"
+                    >
+                      <HelpIcon noVerticalAlign />
+                    </button>
+                  </Popover>
+                }
               >
-                <button
-                  aria-label="More info for name field"
-                  onClick={e => e.preventDefault()}
-                  aria-describedby="simple-form-name"
-                  className="pf-c-form__group-label-help"
-                >
-                  <HelpIcon noVerticalAlign />
-                </button>
-              </Popover>
-            }
-          >
-            <Flex>
-              <FlexItem grow={{ default: 'grow' }}>
-                <Touchspin value={10485760} maxWidth />
-              </FlexItem>
-              <FlexItem>
-                <Select
-                  variant={SelectVariant.single}
-                  aria-label="Select Input"
-                  onToggle={onToggle12}
-                  onSelect={onSelect12}
-                  selections={selected12}
-                  isOpen={isOpen12}
-                  // aria-labelledby={titleId}
-                >
-                  <SelectOption key={0} value="bytes" isPlaceholder/>
-                  <SelectOption key={1} value="kilobytes" />
-                  <SelectOption key={2} value="megabytes" />
-                </Select>
-              </FlexItem>
-            </Flex>
-          </FormGroup>
-        </Form>
+                <Flex>
+                  <FlexItem grow={{ default: 'grow' }}>
+                    <Touchspin value={4096} maxWidth />
+                  </FlexItem>
+                  <FlexItem>
+                    <Select
+                      variant={SelectVariant.single}
+                      aria-label="Select Input"
+                      onToggle={onToggle11}
+                      onSelect={onSelect11}
+                      selections={selected11}
+                      isOpen={isOpen11}
+                      // aria-labelledby={titleId}
+                    >
+                      <SelectOption key={0} value="bytes" isPlaceholder/>
+                      <SelectOption key={1} value="kilobytes" />
+                      <SelectOption key={2} value="megabytes" />
+                      <SelectOption key={3} value="gigabytes" />
+                      <SelectOption key={4} value="terabytes" />
+                    </Select>
+                  </FlexItem>
+                </Flex>
+              </FormGroup>
 
-        <TextContent>
-          <Text component={TextVariants.h2}>
-            Flush
-          </Text>
-          <Text component={TextVariants.p}>
-            These details control the frequency of the flushing of the log.
-          </Text>
-        </TextContent>
-
-        <Form>
-          <FormGroup
-            className="topics-wizard-content"
-            label="Index interval bytes"
-            labelIcon={
-              <Popover
-                headerContent={<div>Test</div>}
-                bodyContent={<div>Test</div>}
+              <FormGroup
+                className="topics-wizard-content"
+                label="Segment interval bytes"
+                labelIcon={
+                  <Popover
+                    headerContent={<div>Test</div>}
+                    bodyContent={<div>Test</div>}
+                  >
+                    <button
+                      aria-label="More info for name field"
+                      onClick={e => e.preventDefault()}
+                      aria-describedby="simple-form-name"
+                      className="pf-c-form__group-label-help"
+                    >
+                      <HelpIcon noVerticalAlign />
+                    </button>
+                  </Popover>
+                }
               >
-                <button
-                  aria-label="More info for name field"
-                  onClick={e => e.preventDefault()}
-                  aria-describedby="simple-form-name"
-                  className="pf-c-form__group-label-help"
-                >
-                  <HelpIcon noVerticalAlign />
-                </button>
-              </Popover>
-            }
-          >
-            <Flex>
-              <FlexItem grow={{ default: 'grow' }}>
-                <Touchspin value={98246548376534} maxWidth />
-              </FlexItem>
-              <FlexItem>
-                <Select
-                  variant={SelectVariant.single}
-                  aria-label="Select Input"
-                  onToggle={onToggle13}
-                  onSelect={onSelect13}
-                  selections={selected13}
-                  isOpen={isOpen13}
-                  // aria-labelledby={titleId}
-                >
-                  <SelectOption key={0} value="milliseconds" isPlaceholder/>
-                  <SelectOption key={1} value="seconds" />
-                  <SelectOption key={2} value="minutes" />
-                </Select>
-              </FlexItem>
-            </Flex>
-          </FormGroup>
+                <Flex>
+                  <FlexItem grow={{ default: 'grow' }}>
+                    <Touchspin value={10485760} maxWidth />
+                  </FlexItem>
+                  <FlexItem>
+                    <Select
+                      variant={SelectVariant.single}
+                      aria-label="Select Input"
+                      onToggle={onToggle12}
+                      onSelect={onSelect12}
+                      selections={selected12}
+                      isOpen={isOpen12}
+                      // aria-labelledby={titleId}
+                    >
+                      <SelectOption key={0} value="bytes" isPlaceholder/>
+                      <SelectOption key={1} value="kilobytes" />
+                      <SelectOption key={2} value="megabytes" />
+                      <SelectOption key={3} value="gigabytes" />
+                      <SelectOption key={4} value="terabytes" />
+                    </Select>
+                  </FlexItem>
+                </Flex>
+              </FormGroup>
+            </Form>
 
-          <FormGroup
-            className="topics-wizard-content"
-            label="Flush interval time"
-            labelIcon={
-              <Popover
-                headerContent={<div>Test</div>}
-                bodyContent={<div>Test</div>}
+            <TextContent>
+              <Text component={TextVariants.h2} tabIndex={-1} id="flush">
+                Flush
+              </Text>
+              <Text component={TextVariants.p}>
+                These details control the frequency of the flushing of the log.
+              </Text>
+            </TextContent>
+
+            <Form>
+              <FormGroup
+                className="topics-wizard-content"
+                label="Index interval bytes"
+                labelIcon={
+                  <Popover
+                    headerContent={<div>Test</div>}
+                    bodyContent={<div>Test</div>}
+                  >
+                    <button
+                      aria-label="More info for name field"
+                      onClick={e => e.preventDefault()}
+                      aria-describedby="simple-form-name"
+                      className="pf-c-form__group-label-help"
+                    >
+                      <HelpIcon noVerticalAlign />
+                    </button>
+                  </Popover>
+                }
               >
-                <button
-                  aria-label="More info for name field"
-                  onClick={e => e.preventDefault()}
-                  aria-describedby="simple-form-name"
-                  className="pf-c-form__group-label-help"
-                >
-                  <HelpIcon noVerticalAlign />
-                </button>
-              </Popover>
-            }
-          >
-            <Flex>
-              <FlexItem grow={{ default: 'grow' }}>
-                <Touchspin value={924863845763856} maxWidth />
-              </FlexItem>
-              <FlexItem>
-                <Select
-                  variant={SelectVariant.single}
-                  aria-label="Select Input"
-                  onToggle={onToggle14}
-                  onSelect={onSelect14}
-                  selections={selected14}
-                  isOpen={isOpen14}
-                  // aria-labelledby={titleId}
-                >
-                  <SelectOption key={0} value="milliseconds" isPlaceholder/>
-                  <SelectOption key={1} value="seconds" />
-                  <SelectOption key={2} value="minutes" />
-                </Select>
-              </FlexItem>
-            </Flex>
-          </FormGroup>
+                <Flex>
+                  <FlexItem grow={{ default: 'grow' }}>
+                    <Touchspin value={98246548376534} maxWidth />
+                  </FlexItem>
+                  <FlexItem>
+                    <Select
+                      variant={SelectVariant.single}
+                      aria-label="Select Input"
+                      onToggle={onToggle13}
+                      onSelect={onSelect13}
+                      selections={selected13}
+                      isOpen={isOpen13}
+                      // aria-labelledby={titleId}
+                    >
+                      <SelectOption key={0} value="milliseconds" isPlaceholder/>
+                      <SelectOption key={1} value="seconds" />
+                      <SelectOption key={2} value="minutes" />
+                      <SelectOption key={3} value="hours" />
+                      <SelectOption key={4} value="days" />
+                      <SelectOption key={5} value="weeks" />
+                      <SelectOption key={6} value="months" />
+                    </Select>
+                  </FlexItem>
+                </Flex>
+              </FormGroup>
 
-          <ActionGroup>
-            <Button variant="primary">Create topic</Button>
-            <Button variant="link">Cancel</Button>
-          </ActionGroup>
+              <FormGroup
+                className="topics-wizard-content"
+                label="Flush interval time"
+                labelIcon={
+                  <Popover
+                    headerContent={<div>Test</div>}
+                    bodyContent={<div>Test</div>}
+                  >
+                    <button
+                      aria-label="More info for name field"
+                      onClick={e => e.preventDefault()}
+                      aria-describedby="simple-form-name"
+                      className="pf-c-form__group-label-help"
+                    >
+                      <HelpIcon noVerticalAlign />
+                    </button>
+                  </Popover>
+                }
+              >
+                <Flex>
+                  <FlexItem grow={{ default: 'grow' }}>
+                    <Touchspin value={924863845763856} maxWidth />
+                  </FlexItem>
+                  <FlexItem>
+                    <Select
+                      variant={SelectVariant.single}
+                      aria-label="Select Input"
+                      onToggle={onToggle14}
+                      onSelect={onSelect14}
+                      selections={selected14}
+                      isOpen={isOpen14}
+                      // aria-labelledby={titleId}
+                    >
+                      <SelectOption key={0} value="milliseconds" isPlaceholder/>
+                      <SelectOption key={1} value="seconds" />
+                      <SelectOption key={2} value="minutes" />
+                      <SelectOption key={3} value="hours" />
+                      <SelectOption key={4} value="days" />
+                      <SelectOption key={5} value="weeks" />
+                      <SelectOption key={6} value="months" />
+                    </Select>
+                  </FlexItem>
+                </Flex>
+              </FormGroup>
 
-        </Form>
+              <ActionGroup>
+                <Button variant="primary">Create topic</Button>
+                <Button variant="link">Cancel</Button>
+              </ActionGroup>
+            </Form>
 
-      </div>
+              </PageSection>
+            </PageGroup>
+          </div>
+        </GridItem>
+      </Grid>
     </>
   );
 }

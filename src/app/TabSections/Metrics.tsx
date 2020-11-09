@@ -6,7 +6,7 @@ import {
 
 const Metrics: React.FunctionComponent = () => (
   <>
-    <Title headingLevel="h1" size="lg">Metrics component</Title>
+    <Title headingLevel="h1" size="lg">This is where the metrics page would go.</Title>
   </>
 )
 

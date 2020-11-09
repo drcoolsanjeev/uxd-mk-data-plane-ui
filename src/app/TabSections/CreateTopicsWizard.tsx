@@ -49,7 +49,7 @@ const CreateTopicsWizard: React.FunctionComponent = () => {
 
   const mainBreadcrumbs = (
     <Breadcrumb>
-      <BreadcrumbItem to="#">OpenShift Streams</BreadcrumbItem>
+      <BreadcrumbItem to="#">Red Hat OpenShift Streams for Apache Kafka</BreadcrumbItem>
       <BreadcrumbItem to="#">MK Cluster Instance</BreadcrumbItem>
       <BreadcrumbItem to="#" isActive>
         Create topic
@@ -296,7 +296,7 @@ const CreateTopicsWizard: React.FunctionComponent = () => {
             />
             <div className="radio-description">
               <Touchspin value={3} />
-              <Text component={TextVariants.small}>
+              <Text component={TextVariants.small} className="minimum-in-sync-replicas">
                 Minimum in-sync replicas
               </Text>
               <Touchspin value={2} />

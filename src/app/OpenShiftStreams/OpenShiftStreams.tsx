@@ -23,15 +23,18 @@ import { Metrics } from '../TabSections/Metrics';
 import { CreateTopicsWizard } from '../TabSections/CreateTopicsWizard';
 import { TopicItem } from '../TabSections/TopicItem';
 import { ClusterConnectionDrawer } from '@app/TabSections/ClusterConnectionDrawer';
+import { ConsumerGroupsDrawer } from '@app/TabSections/ConsumerGroupsDrawer';
 import CodeBranchIcon from '@patternfly/react-icons/dist/js/icons/code-branch-icon';
 
 const OpenShiftStreams: React.FunctionComponent = () => {
 
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded2, setIsExpanded2] = useState(false);
   const [activeTabKey, setActiveTabKey] = useState(0);
   const [isCreateTopic, setIsCreateTopic] = useState(false);
   const [isTopicExpanded, setIsTopicExpanded] = useState(false);
   const [topicName, setTopicName] = useState("");
+  const [consumergroupID, setConsumerGroupID] = useState("");
   const drawerRef = React.createRef();
   const contentRef1 = React.createRef();
   const contentRef2 = React.createRef();
@@ -47,7 +50,8 @@ const OpenShiftStreams: React.FunctionComponent = () => {
   };
 
   const onCloseClick = () => {
-    setIsExpanded(!isExpanded);
+    setIsExpanded(false);
+    setIsExpanded2(false);
   };
 
   const handleTabClick = (event, tabIndex) => {
@@ -86,18 +90,23 @@ const OpenShiftStreams: React.FunctionComponent = () => {
 
   const mainBreadcrumbs = (
     <Breadcrumb>
-      <BreadcrumbItem to="#">OpenShift Streams</BreadcrumbItem>
+      <BreadcrumbItem to="#">Red Hat OpenShift Streams for Apache Kafka</BreadcrumbItem>
       <BreadcrumbItem to="#" isActive>
         MK Cluster Instance
       </BreadcrumbItem>
     </Breadcrumb>
   )
 
+  console.log('is expanded 2 trueeee' + isExpanded2);
+
   return (
     <>
     { !isCreateTopic && !isTopicExpanded &&
-      <Drawer isExpanded={isExpanded} onExpand={onExpand}>
-        <DrawerContent panelContent={<ClusterConnectionDrawer onCloseClick={onCloseClick} drawerRef={drawerRef} isExpanded={isExpanded}  />}>
+
+        <Drawer isExpanded={isExpanded || isExpanded2} onExpand={onExpand}>
+        <DrawerContent panelContent={ isExpanded2 ? <ConsumerGroupsDrawer onCloseClick={onCloseClick} drawerRef={drawerRef} isExpanded={isExpanded2} consumergroupID={consumergroupID}  /> :
+            <ClusterConnectionDrawer onCloseClick={onCloseClick} drawerRef={drawerRef} isExpanded={isExpanded}  />
+            }>
           <DrawerContentBody>
             <section className="pf-c-page__main-breadcrumb">
               { mainBreadcrumbs }
@@ -122,7 +131,8 @@ const OpenShiftStreams: React.FunctionComponent = () => {
                 <Home
                   isExpanded={isExpanded}
                   setIsExpanded={setIsExpanded}
-                  setActiveTabKey={setActiveTabKey}
+                  // setActiveTabKey={setActiveTabKey}
+                  setIsCreateTopic={setIsCreateTopic}
                 />
               </TabContent>
               <TabContent eventKey={1} id="refTab2Section" ref={contentRef2} aria-label="Tab item 2" hidden>
@@ -135,7 +145,11 @@ const OpenShiftStreams: React.FunctionComponent = () => {
                 />
               </TabContent>
               <TabContent eventKey={2} id="refTab3Section" ref={contentRef3} aria-label="Tab item 3" hidden>
-                <ConsumerGroups/>
+                <ConsumerGroups
+                  consumergroupID={consumergroupID}
+                  setConsumerGroupID={setConsumerGroupID}
+                  setIsExpanded2={setIsExpanded2}
+                />
               </TabContent>
               <TabContent eventKey={3} id="refTab4Section" ref={contentRef4} aria-label="Tab item 4" hidden>
                 <Metrics/>
@@ -149,7 +163,7 @@ const OpenShiftStreams: React.FunctionComponent = () => {
         <CreateTopicsWizard/>
       }
       { isTopicExpanded &&
-        <TopicItem topicName={topicName}/>
+        <TopicItem topicName={topicName} setIsExpanded2={setIsExpanded2} consumergroupID={consumergroupID} setConsumerGroupID={setConsumerGroupID}/>
       }
     </>
   )
