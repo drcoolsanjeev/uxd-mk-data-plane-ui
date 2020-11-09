@@ -93,16 +93,16 @@ const GenerateCredential: React.FunctionComponent = () => {
     const value = target.type === 'radio' ? target.checked : target.value;
     const name = target.name;
 
-    if (name === "radio1") {
+    if (name === "radio1-1") {
       setRadio1Step1(value)
     }
-    else if (name === "radio2") {
+    else if (name === "radio2-1") {
       setRadio2Step1(value)
     }
-    else if (name === "radio3") {
+    else if (name === "radio3-1") {
       setRadio3Step1(value)
     }
-    else if (name === "radio4") {
+    else if (name === "radio4-1") {
       setRadio4Step1(value)
     }
   }
