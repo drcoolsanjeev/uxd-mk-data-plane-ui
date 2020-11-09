@@ -135,7 +135,7 @@ const CreateTopicsWizard: React.FunctionComponent = ({ setIsCreateTopic }) => {
           This is the unique name used to recognize your topic.
         </Text>
         <Text component={TextVariants.small}>
-          It will also be used by your producers and consumers as part of the connection information, so make it something easy to recognize. 
+          It will also be used by your producers and consumers as part of the connection information, so make it something easy to recognize.
         </Text>
         <Form>
           <FormGroup
