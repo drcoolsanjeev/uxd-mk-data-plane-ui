@@ -100,6 +100,9 @@ const TopicItemProperties: React.FunctionComponent = ({topicName}) => {
             <JumpLinksItem key={6} href="#flush">
               Flush
             </JumpLinksItem>
+            <JumpLinksItem key={7} href="#delete">
+              Delete topic
+            </JumpLinksItem>
           </JumpLinks>
         </GridItem>
         <GridItem span={9}>
@@ -678,8 +681,8 @@ const TopicItemProperties: React.FunctionComponent = ({topicName}) => {
 
             <Divider/>
 
-            <TextContent>
-                <Text component={TextVariants.h2}>
+            <TextContent className="pf-u-mt-2xl">
+                <Text component={TextVariants.h2} id="delete">
                   Delete topic (irreversable)
                 </Text>
                 <Text component={TextVariants.p}>
