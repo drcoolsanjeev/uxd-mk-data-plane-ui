@@ -13,6 +13,7 @@ import {
   DrawerActions,
   DrawerCloseButton,
   Flex,
+  FlexItem,
   Split,
   SplitItem,
   Stack,
@@ -30,7 +31,9 @@ import {
 } from '@patternfly/react-core';
 import DownloadIcon from '@patternfly/react-icons/dist/js/icons/download-icon';
 import CopyIcon from '@patternfly/react-icons/dist/js/icons/copy-icon';
+import '@patternfly/react-styles/css/utilities/Spacing/spacing.css';
 import './ClusterConnectionDrawer.css';
+import { GenerateCredential } from './GenerateCredential';
 
 const ClusterConnectionDrawer: React.FunctionComponent = ({onCloseClick, drawerRef, isExpanded }) => {
 
@@ -41,90 +44,83 @@ const ClusterConnectionDrawer: React.FunctionComponent = ({onCloseClick, drawerR
   };
 
   const resourcesTab = (
-    <TextContent>
-      <Text component={TextVariants.small}>
-        To connect an application or tool to this cluster, you will need the address of a bootstrap server, a certificate and generated credentials.
-      </Text>
-      <Text component={TextVariants.h5}>
-        Bootstrap servers and credentials
-      </Text>
-      <Text component={TextVariants.small}>
-        Your application or tool will make its initial connection to the cluster using the bootstrap server, and authenticate with credentials specific to the server if required.
-      </Text>
-      <Text component={TextVariants.h5}>
-        External servers
-      </Text>
-      <Stack hasGutter>
-        <StackItem>
-          <Split hasGutter>
-            <SplitItem isFilled>
-              <ClipboardCopy>
-                strimzi-external-bootstrap-01 : 1234
-              </ClipboardCopy>
-            </SplitItem>
-            <SplitItem>
-              <Button variant="secondary">Generate credential</Button>
-            </SplitItem>
-          </Split>
-        </StackItem>
-        <StackItem>
+    <>
+      <TextContent className="pf-u-pb-sm">
+        <Text component={TextVariants.small}>
+          To connect an application or tool to this cluster, you will need the address of a bootstrap server, a certificate and generated credentials.
+        </Text>
+        <Text component={TextVariants.h5}>
+          Bootstrap servers and credentials
+        </Text>
+        <Text component={TextVariants.small}>
+          Your application or tool will make its initial connection to the cluster using the bootstrap server, and authenticate with credentials specific to the server if required.
+        </Text>
+        <Text component={TextVariants.h5}>
+          External server
+        </Text>
+      </TextContent>
+      <Flex>
+        <FlexItem className="pf-m-grow pf-m-spacer-none pf-u-mb-xs">
           <ClipboardCopy>
-            strimzi-external-bootstrap-02 : 1234
+            strimzi-external-bootstrap-01 : 1234
           </ClipboardCopy>
-        </StackItem>
-      </Stack>
-      <Text component={TextVariants.h5}>
-        Certificates
-      </Text>
-      <Text component={TextVariants.small}>
-        A certificate is required by your Kafka clients to connect securely to this cluster.
-      </Text>
-      <Split hasGutter>
-        <SplitItem isFilled>
-          <Card isFlat isCompact>
-            <CardHeader>
-              <CardActions>
-                <Button variant="plain" aria-label="Download">
-                  <DownloadIcon/>
-                </Button>
-              </CardActions>
-              <CardTitle>
-                Java trustore
-              </CardTitle>
-            </CardHeader>
-            <CardBody>
-              Use this for a Java client.
-            </CardBody>
-          </Card>
-        </SplitItem>
-        <SplitItem isFilled>
-          <Card isFlat isCompact>
-            <CardHeader>
-              <CardActions>
-                <Button variant="plain" aria-label="Download">
-                  <DownloadIcon/>
-                </Button>
-              </CardActions>
-              <CardTitle>
-                PEM certificate
-              </CardTitle>
-            </CardHeader>
-            <CardBody>
-              Use this for anything else.
-            </CardBody>
-          </Card>
-        </SplitItem>
-      </Split>
-      <Text component={TextVariants.h5}>
-        API endpoint
-      </Text>
-      <Text component={TextVariants.small}>
-        Applications and tools that use the REST producer API will need the API endpoint to connect to Strimzi.
-      </Text>
-      <ClipboardCopy>
-        https : // : 30123
-      </ClipboardCopy>
-    </TextContent>
+        </FlexItem>
+        <GenerateCredential />
+      </Flex>
+      <TextContent>
+        <Text component={TextVariants.h5}>
+          Certificates
+        </Text>
+        <Text component={TextVariants.small}>
+          A certificate is required by your Kafka clients to connect securely to this cluster.
+        </Text>
+        <Split hasGutter>
+          <SplitItem isFilled>
+            <Card isFlat isCompact>
+              <CardHeader>
+                <CardActions>
+                  <Button variant="plain" aria-label="Download">
+                    <DownloadIcon/>
+                  </Button>
+                </CardActions>
+                <CardTitle>
+                  Java trustore
+                </CardTitle>
+              </CardHeader>
+              <CardBody>
+                Use this for a Java client.
+              </CardBody>
+            </Card>
+          </SplitItem>
+          <SplitItem isFilled>
+            <Card isFlat isCompact>
+              <CardHeader>
+                <CardActions>
+                  <Button variant="plain" aria-label="Download">
+                    <DownloadIcon/>
+                  </Button>
+                </CardActions>
+                <CardTitle>
+                  PEM certificate
+                </CardTitle>
+              </CardHeader>
+              <CardBody>
+                Use this for anything else.
+              </CardBody>
+            </Card>
+          </SplitItem>
+        </Split>
+        <Text component={TextVariants.h5}>
+          API endpoint
+        </Text>
+        <Text component={TextVariants.small}>
+          Applications and tools that use the REST producer API will need the API endpoint to connect to Strimzi.
+        </Text>
+        <ClipboardCopy>
+          https : // : 30123
+        </ClipboardCopy>
+      </TextContent>
+    </>
   )
 
   const sampleCodeTab = (
