@@ -5,6 +5,7 @@ import {
   CardHeader,
   CardBody,
   CardActions,
+  CardFooter,
   CardTitle,
   ClipboardCopy,
   DrawerPanelContent,
@@ -14,15 +15,21 @@ import {
   DrawerCloseButton,
   Flex,
   FlexItem,
+  FormGroup,
+  Grid,
+  GridItem,
   Split,
   SplitItem,
   Stack,
   StackItem,
+  Title,
+  TitleSizes,
   Tabs,
   Tab,
   TabTitleText,
   TextContent,
   Text,
+  TextInput,
   TextVariants,
   TextList,
   TextListVariants,
@@ -32,6 +39,7 @@ import {
 import DownloadIcon from '@patternfly/react-icons/dist/js/icons/download-icon';
 import CopyIcon from '@patternfly/react-icons/dist/js/icons/copy-icon';
 import '@patternfly/react-styles/css/utilities/Spacing/spacing.css';
+import '@patternfly/react-styles/css/utilities/Alignment/alignment.css';
 import './ClusterConnectionDrawer.css';
 import { GenerateCredential } from './GenerateCredential';
 
@@ -47,15 +55,15 @@ const ClusterConnectionDrawer: React.FunctionComponent = ({onCloseClick, drawerR
     <>
       <TextContent className="pf-u-pb-sm">
         <Text component={TextVariants.small}>
-          To connect an application or tool to this Kafka instance, you will need the address of a bootstrap server, a certificate and generated credentials.
+          To connect an application or tool to this Kafka instance, you will need the address of a Kafka listener, a certificate to authenticate with, and generated credentials.
         </Text>
         <Text component={TextVariants.h5}>
-          Bootstrap servers and credentials
+          Kafka listener and credentials
         </Text>
         <Text component={TextVariants.small}>
           Your application or tool will make its initial connection to the Kafka instance using the bootstrap server, and authenticate with credentials specific to the server if required.
         </Text>
-        <Text component={TextVariants.h5}>
+        <Text component={TextVariants.p} className="pf-u-mt-md">
           External server
         </Text>
       </TextContent>
@@ -74,47 +82,52 @@ const ClusterConnectionDrawer: React.FunctionComponent = ({onCloseClick, drawerR
         <Text component={TextVariants.small}>
           A certificate is required by your Kafka clients to connect securely to this Kafka instance.
         </Text>
-        <Split hasGutter>
-          <SplitItem isFilled>
-            <Card isFlat isCompact>
+        <Grid hasGutter>
+          <GridItem span={6}>
+            <Card isFlat isCompact className="card-certificate">
               <CardHeader>
-                <CardActions>
-                  <Button variant="plain" aria-label="Download">
-                    <DownloadIcon/>
-                  </Button>
-                </CardActions>
-                <CardTitle>
-                  Java trustore
+                <CardTitle className="pf-u-pt-0">
+                  PKCS12 certificate
                 </CardTitle>
               </CardHeader>
               <CardBody>
                 Use this for a Java client.
               </CardBody>
+              <CardBody>
+                <FormGroup label="Certificate password" fieldId="cert-password">
+                  <TextInput
+                    type="password"
+                    id="cert-password"
+                    name="cert-password"
+                  />
+                </FormGroup>
+              </CardBody>
+              <CardFooter className="pf-u-text-align-right">
+                <Button variant="primary">Download certificate</Button>
+              </CardFooter>
             </Card>
-          </SplitItem>
-          <SplitItem isFilled>
-            <Card isFlat isCompact>
+          </GridItem>
+          <GridItem span={6}>
+            <Card isFlat isCompact className="card-certificate pf-u-h-100">
               <CardHeader>
-                <CardActions>
-                  <Button variant="plain" aria-label="Download">
-                    <DownloadIcon/>
-                  </Button>
-                </CardActions>
-                <CardTitle>
+                <CardTitle className="pf-u-pt-0">
                   PEM certificate
                 </CardTitle>
               </CardHeader>
               <CardBody>
                 Use this for anything else.
               </CardBody>
+              <CardFooter className="pf-u-text-align-right">
+                <Button variant="primary">Download certificate</Button>
+              </CardFooter>
             </Card>
-          </SplitItem>
-        </Split>
+          </GridItem>
+        </Grid>
         <Text component={TextVariants.h5}>
-          API endpoint
+          Producer endpoint and credentials
         </Text>
         <Text component={TextVariants.small}>
-          Applications and tools that use the REST producer API will need the API endpoint to connect to Strimzi.
+          Applications and tools that use the REST producer API will need the REST producer endpoint to connect.
         </Text>
         <ClipboardCopy>
           https : // : 30123
@@ -125,7 +138,7 @@ const ClusterConnectionDrawer: React.FunctionComponent = ({onCloseClick, drawerR
 
   const sampleCodeTab = (
     <>
-    <TextContent>
+    <TextContent className="pf-u-pb-sm">
       <Text component={TextVariants.h5}>
         Sample connection code
       </Text>
@@ -151,7 +164,7 @@ const ClusterConnectionDrawer: React.FunctionComponent = ({onCloseClick, drawerR
         </div>
       </div>
 
-      <TextContent>
+      <TextContent className="pf-u-pb-sm">
         <Text component={TextVariants.h5}>
           Sample connection code
         </Text>
@@ -182,7 +195,7 @@ const ClusterConnectionDrawer: React.FunctionComponent = ({onCloseClick, drawerR
   return (
     <DrawerPanelContent className="cluster-connection-drawer" widths={{ default: 'width_50' }}>
       <DrawerHead>
-        <span tabIndex={isExpanded ? 0 : -1} ref={drawerRef}>Cluster connection</span>
+        <Title size={TitleSizes.lg} headingLevel="h2" tabIndex={isExpanded ? 0 : -1} ref={drawerRef}>Cluster connection</Title>
         <DrawerActions>
           <DrawerCloseButton onClick={onCloseClick} />
         </DrawerActions>
