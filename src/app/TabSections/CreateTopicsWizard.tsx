@@ -23,7 +23,7 @@ import {
   TextVariants,
   Wizard
 } from '@patternfly/react-core';
-import { Touchspin } from '../CustomComponents/TouchSpin';
+import { Touchspin } from '../CustomComponents/Touchspin';
 import './CreateTopicsWizard.css';
 import { CreateTopicsWizardMoreOptions } from './CreateTopicsWizardMoreOptions';
 import { CreateTopicStep4 } from './CreateTopicStep4';
