@@ -16,7 +16,7 @@ import Documentation from '@app/bgimages/Documentation.svg';
 import './Home.css';
 
 
-const Home: React.FunctionComponent = ({isExpanded, setIsExpanded, setActiveTabKey}) => {
+const Home: React.FunctionComponent = ({isExpanded, setIsExpanded, setIsCreateTopic}) => {
 
   const [selected, setSelected] = useState(null);
 
@@ -25,7 +25,7 @@ const Home: React.FunctionComponent = ({isExpanded, setIsExpanded, setActiveTabK
     setSelected(newSelected);
 
     if(event.currentTarget.id === "card-1") {
-      setActiveTabKey(1);
+      setIsCreateTopic(true);
     }
 
     if(event.currentTarget.id === "card-3") {

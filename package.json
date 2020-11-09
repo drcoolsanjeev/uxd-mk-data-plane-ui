@@ -1,5 +1,5 @@
 {
-  "name": "patternfly-seed",
+  "name": "uxd-mk-data-plane",
   "version": "0.0.2",
   "description": "An open source build scaffolding utility for web apps.",
   "main": "server.js",

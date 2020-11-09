@@ -24,7 +24,7 @@ import SearchIcon from '@patternfly/react-icons/dist/js/icons/search-icon';
 import ExclamationCircleIcon from '@patternfly/react-icons/dist/js/icons/exclamation-circle-icon';
 import CheckCircleIcon from '@patternfly/react-icons/dist/js/icons/check-circle-icon';
 
-const TopicItemConsumerGroups: React.FunctionComponent = () => {
+const TopicItemConsumerGroups: React.FunctionComponent = ({setIsExpanded, setConsumerGroupID, consumergroupID}) => {
 
   const consumerGroupData = [
     {
@@ -62,15 +62,20 @@ const TopicItemConsumerGroups: React.FunctionComponent = () => {
   const columns = (
     [
       'Consumer group ID',
-      'Active members',
-      'Unconsumed partitions',
+      'Active members for this topic',
+      'Unconsumed partitions for this topic',
       'State'
     ]
   )
 
+  const onClickConsumerGroup = (id) => {
+    setConsumerGroupID(id);
+    setIsExpanded(true);
+  }
+
   const rows = consumerGroupData.map(consumergroup => (
       [
-        consumergroup.id,
+        { title: <Button variant="link" isInline onClick={() => onClickConsumerGroup(consumergroup.id)}>{consumergroup.id}</Button>},
         consumergroup.members,
         consumergroup.partitions,
         { title: <Label color={consumergroup.state === "Stable" ? "green" : "red"} icon={consumergroup.state === "Stable" ? <CheckCircleIcon/> : <ExclamationCircleIcon/>}>{consumergroup.state}</Label>}
