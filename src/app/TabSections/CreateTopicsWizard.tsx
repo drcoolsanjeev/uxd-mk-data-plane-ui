@@ -23,7 +23,7 @@ import {
   TextVariants,
   Wizard
 } from '@patternfly/react-core';
-import { Touchspin } from '../CustomComponents/TouchSpin';
+import { Touchspin } from '../CustomComponents/Touchspin';
 import './CreateTopicsWizard.css';
 import { CreateTopicsWizardMoreOptions } from './CreateTopicsWizardMoreOptions';
 import { CreateTopicStep4 } from './CreateTopicStep4';
@@ -139,7 +139,7 @@ const CreateTopicsWizard: React.FunctionComponent = () => {
           This is the unique name used to recognize your topic.
         </Text>
         <Text component={TextVariants.small}>
-          It will also be used by your producers and consumers as part of the connection information, so make it something easy to recognize. 
+          It will also be used by your producers and consumers as part of the connection information, so make it something easy to recognize.
         </Text>
         <Form>
           <FormGroup
