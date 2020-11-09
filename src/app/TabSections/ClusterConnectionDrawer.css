@@ -8,3 +8,8 @@
 .pf-c-code-editor__main {
   height: 220px;
 }
+
+.pf-c-code-editor__code-pre {
+  white-space: normal;
+  word-break: break-word;
+}

@@ -18,6 +18,8 @@ import {
   SplitItem,
   Stack,
   StackItem,
+  Title,
+  TitleSizes,
   Tabs,
   Tab,
   TabTitleText,
@@ -55,7 +57,7 @@ const ClusterConnectionDrawer: React.FunctionComponent = ({onCloseClick, drawerR
         <Text component={TextVariants.small}>
           Your application or tool will make its initial connection to the Kafka instance using the bootstrap server, and authenticate with credentials specific to the server if required.
         </Text>
-        <Text component={TextVariants.h5}>
+        <Text component={TextVariants.h6}>
           External server
         </Text>
       </TextContent>
@@ -125,7 +127,7 @@ const ClusterConnectionDrawer: React.FunctionComponent = ({onCloseClick, drawerR
 
   const sampleCodeTab = (
     <>
-    <TextContent>
+    <TextContent className="pf-u-pb-sm">
       <Text component={TextVariants.h5}>
         Sample connection code
       </Text>
@@ -151,7 +153,7 @@ const ClusterConnectionDrawer: React.FunctionComponent = ({onCloseClick, drawerR
         </div>
       </div>
 
-      <TextContent>
+      <TextContent className="pf-u-pb-sm">
         <Text component={TextVariants.h5}>
           Sample connection code
         </Text>
@@ -182,7 +184,7 @@ const ClusterConnectionDrawer: React.FunctionComponent = ({onCloseClick, drawerR
   return (
     <DrawerPanelContent className="cluster-connection-drawer" widths={{ default: 'width_50' }}>
       <DrawerHead>
-        <span tabIndex={isExpanded ? 0 : -1} ref={drawerRef}>Cluster connection</span>
+        <Title size={TitleSizes.lg} headingLevel="h2" tabIndex={isExpanded ? 0 : -1} ref={drawerRef}>Cluster connection</Title>
         <DrawerActions>
           <DrawerCloseButton onClick={onCloseClick} />
         </DrawerActions>
