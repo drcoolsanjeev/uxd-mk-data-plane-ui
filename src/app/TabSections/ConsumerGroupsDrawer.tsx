@@ -39,7 +39,7 @@ import DownloadIcon from '@patternfly/react-icons/dist/js/icons/download-icon';
 import CopyIcon from '@patternfly/react-icons/dist/js/icons/copy-icon';
 import './ConsumerGroupsDrawer.css';
 
-const ConsumerGroupsDrawer: React.FunctionComponent = ({onCloseClick, drawerRef, isExpanded }) => {
+const ConsumerGroupsDrawer: React.FunctionComponent = ({onCloseClick, drawerRef, isExpanded, isTopics, consumergroupID }) => {
 
   const consumerGroupData = [
     {
@@ -99,7 +99,7 @@ const ConsumerGroupsDrawer: React.FunctionComponent = ({onCloseClick, drawerRef,
         <span tabIndex={isExpanded ? 0 : -1} ref={drawerRef}>
           <TextContent>
             <Text component={TextVariants.small}>Consumer group ID</Text>
-            <Text component={TextVariants.h3}>Custom_0</Text>
+            <Text component={TextVariants.h3}>{consumergroupID}</Text>
           </TextContent>
         </span>
         <DrawerActions>
@@ -110,11 +110,11 @@ const ConsumerGroupsDrawer: React.FunctionComponent = ({onCloseClick, drawerRef,
         <TextContent>
         <Flex>
           <FlexItem>
-            <Text component={TextVariants.small}>Active members for this topic</Text>
+            <Text component={TextVariants.small}>Active members { isTopics && " for this topic"}</Text>
             <Text component={TextVariants.h3}>2</Text>
           </FlexItem>
           <FlexItem>
-            <Text component={TextVariants.small}>Unconsumed partitions for this topic</Text>
+            <Text component={TextVariants.small}>Unconsumed partitions { isTopics && " for this topic"}</Text>
             <Text component={TextVariants.h3}>2</Text>
           </FlexItem>
           <FlexItem>

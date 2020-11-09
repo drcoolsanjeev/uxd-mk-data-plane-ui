@@ -3,6 +3,9 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   Button,
+  Drawer,
+  DrawerContent,
+  DrawerContentBody,
   PageSection,
   PageSectionVariants,
   Title,
@@ -13,18 +16,33 @@ import {
 } from '@patternfly/react-core';
 import {TopicItemProperties} from './TopicItemProperties';
 import {TopicItemConsumerGroups} from './TopicItemConsumerGroups';
+import {ConsumerGroupsDrawer} from './ConsumerGroupsDrawer';
 
-const TopicItem: React.FunctionComponent = ({topicName}) => {
+const TopicItem: React.FunctionComponent = ({topicName, setIsExpanded2, setConsumerGroupID, consumergroupID }) => {
 
   const [activeTabKey, setActiveTabKey] = useState(0);
   const contentRef1 = React.createRef();
   const contentRef2 = React.createRef();
+  const [isExpanded, setIsExpanded] = useState(false);
+  const drawerRef = React.createRef();
+
+  const onExpand = () => {
+    drawerRef.current && drawerRef.current.focus()
+  };
+
+  const onCloseClick = () => {
+    setIsExpanded(false);
+  };
+
 
   const mainBreadcrumbs = (
     <Breadcrumb>
       <BreadcrumbItem to="/openshiftstreams">OpenShift Streams</BreadcrumbItem>
-      <BreadcrumbItem to="#" isActive>
+      <BreadcrumbItem to="/openshiftstreams">
         MK Cluster Instance
+      </BreadcrumbItem>
+      <BreadcrumbItem isActive>
+        {topicName}
       </BreadcrumbItem>
     </Breadcrumb>
   )
@@ -53,6 +71,12 @@ const TopicItem: React.FunctionComponent = ({topicName}) => {
 
   return (
     <>
+
+            
+      <Drawer isExpanded={isExpanded} onExpand={onExpand}>
+        <DrawerContent panelContent={ <ConsumerGroupsDrawer isTopics onCloseClick={onCloseClick} drawerRef={drawerRef} isExpanded={isExpanded} consumergroupID={consumergroupID} /> }>
+        <DrawerContentBody>
+
       <section className="pf-c-page__main-breadcrumb">
         { mainBreadcrumbs }
       </section>
@@ -64,9 +88,12 @@ const TopicItem: React.FunctionComponent = ({topicName}) => {
       </PageSection>
 
         <TabContent eventKey={0} id="refTab1Section" ref={contentRef1} aria-label="Tab item 1">
+
           <PageSection>
-            <TopicItemConsumerGroups/>
+            <TopicItemConsumerGroups setIsExpanded={setIsExpanded} setConsumerGroupID={setConsumerGroupID} consumergroupID={consumergroupID}/>
           </PageSection>
+
+
         </TabContent>
 
         <TabContent eventKey={1} id="refTab2Section" ref={contentRef2} aria-label="Tab item 2" hidden>
@@ -74,6 +101,10 @@ const TopicItem: React.FunctionComponent = ({topicName}) => {
             <TopicItemProperties/>
           </PageSection>
         </TabContent>
+
+        </DrawerContentBody>
+          </DrawerContent>
+          </Drawer>
     </>
   )
 }

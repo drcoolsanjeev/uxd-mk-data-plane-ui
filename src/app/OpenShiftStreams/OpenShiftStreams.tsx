@@ -50,7 +50,8 @@ const OpenShiftStreams: React.FunctionComponent = () => {
   };
 
   const onCloseClick = () => {
-    setIsExpanded(!isExpanded);
+    setIsExpanded(false);
+    setIsExpanded2(false);
   };
 
   const handleTabClick = (event, tabIndex) => {
@@ -96,11 +97,14 @@ const OpenShiftStreams: React.FunctionComponent = () => {
     </Breadcrumb>
   )
 
+  console.log('is expanded 2 trueeee' + isExpanded2);
+
   return (
     <>
     { !isCreateTopic && !isTopicExpanded &&
-      <Drawer isExpanded={isExpanded || isExpanded2} onExpand={onExpand}>
-        <DrawerContent panelContent={ isExpanded2 ? <ConsumerGroupsDrawer onCloseClick={onCloseClick} drawerRef={drawerRef} isExpanded={isExpanded}  /> :
+
+        <Drawer isExpanded={isExpanded || isExpanded2} onExpand={onExpand}>
+        <DrawerContent panelContent={ isExpanded2 ? <ConsumerGroupsDrawer onCloseClick={onCloseClick} drawerRef={drawerRef} isExpanded={isExpanded2} consumergroupID={consumergroupID}  /> :
             <ClusterConnectionDrawer onCloseClick={onCloseClick} drawerRef={drawerRef} isExpanded={isExpanded}  />
             }>
           <DrawerContentBody>
@@ -127,7 +131,8 @@ const OpenShiftStreams: React.FunctionComponent = () => {
                 <Home
                   isExpanded={isExpanded}
                   setIsExpanded={setIsExpanded}
-                  setActiveTabKey={setActiveTabKey}
+                  // setActiveTabKey={setActiveTabKey}
+                  setIsCreateTopic={setIsCreateTopic}
                 />
               </TabContent>
               <TabContent eventKey={1} id="refTab2Section" ref={contentRef2} aria-label="Tab item 2" hidden>
@@ -158,7 +163,7 @@ const OpenShiftStreams: React.FunctionComponent = () => {
         <CreateTopicsWizard/>
       }
       { isTopicExpanded &&
-        <TopicItem topicName={topicName}/>
+        <TopicItem topicName={topicName} setIsExpanded2={setIsExpanded2} consumergroupID={consumergroupID} setConsumerGroupID={setConsumerGroupID}/>
       }
     </>
   )
