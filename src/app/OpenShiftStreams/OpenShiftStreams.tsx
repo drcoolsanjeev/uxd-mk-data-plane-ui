@@ -118,7 +118,7 @@ const OpenShiftStreams: React.FunctionComponent = () => {
                 </LevelItem>
                 <LevelItem>
                   <Button variant="link" icon={<CodeBranchIcon />} iconPosition="right" onClick={onClusterConnection}>
-                    Connect to this cluster
+                    Connect to this instance
                   </Button>
                 </LevelItem>
               </Level>
