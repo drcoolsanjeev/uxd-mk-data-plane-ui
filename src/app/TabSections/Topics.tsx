@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import {
   Button,
   ButtonVariant,
@@ -9,6 +9,8 @@ import {
   ToolbarContent,
   InputGroup,
   TextInput,
+  Pagination,
+  PaginationVariant,
   PageSection,
   Title 
 } from '@patternfly/react-core';
@@ -22,6 +24,17 @@ import SearchIcon from '@patternfly/react-icons/dist/js/icons/search-icon';
 import './Topics.css';
 
 const Topics: React.FunctionComponent = ({isCreateTopic, setIsCreateTopic, isTopicExpanded, setIsTopicExpanded, setTopicName}) => {
+
+  const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState(1);
+
+  const onSetPage = (_event, pageNumber) => {
+    setPage(pageNumber);
+  };
+
+  const onPerPageSelect = (_event, perPage) => {
+    setPerPage(perPage);
+  };
 
   const createTopic = () => {
     setIsCreateTopic(!isCreateTopic);
@@ -128,9 +141,18 @@ const Topics: React.FunctionComponent = ({isCreateTopic, setIsCreateTopic, isTop
               </Button>
             </ToolbarItem>
             <ToolbarItem variant="pagination" align={{ default: 'alignRight' }}>
-              <div className="topics-per-page">
+              {/* <div className="topics-per-page">
                <b>Topics per page:</b> 10
-              </div>
+              </div> */}
+              <Pagination
+                itemCount={10}
+                perPage={perPage}
+                page={page}
+                onSetPage={onSetPage}
+                widgetId="pagination-options-menu-top"
+                onPerPageSelect={onPerPageSelect}
+                isCompact
+              />
             </ToolbarItem>
           </ToolbarContent>
         </Toolbar>
@@ -140,6 +162,16 @@ const Topics: React.FunctionComponent = ({isCreateTopic, setIsCreateTopic, isTop
           <TableBody />
         </Table>
       </Card>
+      <Divider/>
+      <Pagination
+        itemCount={10}
+        widgetId="pagination-options-menu-bottom"
+        perPage={perPage}
+        page={page}
+        variant={PaginationVariant.bottom}
+        onSetPage={onSetPage}
+        onPerPageSelect={onPerPageSelect}
+      />
     </>
   )
 }

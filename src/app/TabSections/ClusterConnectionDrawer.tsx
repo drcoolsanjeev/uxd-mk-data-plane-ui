@@ -29,6 +29,7 @@ import {
   TextListItemVariants
 } from '@patternfly/react-core';
 import DownloadIcon from '@patternfly/react-icons/dist/js/icons/download-icon';
+import CopyIcon from '@patternfly/react-icons/dist/js/icons/copy-icon';
 import './ClusterConnectionDrawer.css';
 
 const ClusterConnectionDrawer: React.FunctionComponent = ({onCloseClick, drawerRef, isExpanded }) => {
@@ -127,18 +128,63 @@ const ClusterConnectionDrawer: React.FunctionComponent = ({onCloseClick, drawerR
   )
 
   const sampleCodeTab = (
+    <>
     <TextContent>
       <Text component={TextVariants.h5}>
         Sample connection code
       </Text>
-      <Text component={TextVariants.p}>
+      <Text component={TextVariants.small}>
         Use this snippet of code to set the properties in your Kafka client to connect securely. Replace the values in &lt;brackets&gt;.
       </Text>
-    </TextContent>
+      </TextContent>
+      <div className="pf-c-code-editor pf-m-read-only">
+        <div className="pf-c-code-editor__header">
+          <div className="pf-c-code-editor__controls">
+            <Button variant="control" aria-label="Action">
+              <CopyIcon />
+            </Button>
+          </div>
+          <div className="pf-c-code-editor__tab">
+            <span className="pf-c-code-editor__tab-text">Java</span>
+          </div>
+        </div>
+        <div className="pf-c-code-editor__main">
+          <div className="pf-c-code-editor__code">
+            <pre className="pf-c-code-editor__code-pre">import java.util.Properties;</pre>
+          </div>
+        </div>
+      </div>
+
+      <TextContent>
+        <Text component={TextVariants.h5}>
+          Sample connection code
+        </Text>
+        <Text component={TextVariants.small}>
+          Use this snippet of code to set the properties in your Kafka client to connect securely. Replace the values in &lt;brackets&gt;.
+        </Text>
+      </TextContent>
+      <div className="pf-c-code-editor pf-m-read-only">
+        <div className="pf-c-code-editor__header">
+          <div className="pf-c-code-editor__controls">
+            <Button variant="control" aria-label="Action">
+              <CopyIcon />
+            </Button>
+          </div>
+        </div>
+        <div className="pf-c-code-editor__main">
+          <div className="pf-c-code-editor__code">
+            <pre className="pf-c-code-editor__code-pre">
+              bootstrap.servers=es-1-4-0-ibm-es-proxy-route-bootstrap-es.apps.2019-4-1-demo-icp-mst.fyre.ibm.com:44 
+              sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username=“token
+            </pre>
+          </div>
+        </div>
+      </div>
+    </>
   )
 
   return (
-    <DrawerPanelContent className="cluster-connection-drawer">
+    <DrawerPanelContent className="cluster-connection-drawer" widths={{ default: 'width_50' }}>
       <DrawerHead>
         <span tabIndex={isExpanded ? 0 : -1} ref={drawerRef}>Cluster connection</span>
         <DrawerActions>

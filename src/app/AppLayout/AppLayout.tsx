@@ -11,7 +11,7 @@ import {
   SkipToContent
 } from '@patternfly/react-core';
 import { routes, IAppRoute, IAppRouteGroup } from '@app/routes';
-import logo from '@app/bgimages/Patternfly-Logo.svg';
+import logo from '@app/bgimages/redhat-logo.svg';
 
 interface IAppLayout {
   children: React.ReactNode;
@@ -37,7 +37,7 @@ const AppLayout: React.FunctionComponent<IAppLayout> = ({children}) => {
       history.push('/');
     }
     return (
-      <img src={logo} onClick={handleClick} alt="PatternFly Logo" />
+      <img src={logo} onClick={handleClick} alt="Red Hat Logo" />
     );
   }
 
@@ -47,6 +47,7 @@ const AppLayout: React.FunctionComponent<IAppLayout> = ({children}) => {
       showNavToggle
       isNavOpen={isNavOpen}
       onNavToggle={isMobileView ? onNavToggleMobile : onNavToggle}
+      topNav="This is not a fully functional UI. It is a prototype for user testing."
     />
   );
 

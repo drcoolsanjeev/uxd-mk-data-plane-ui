@@ -296,7 +296,7 @@ const CreateTopicsWizard: React.FunctionComponent = () => {
             />
             <div className="radio-description">
               <Touchspin value={3} />
-              <Text component={TextVariants.small}>
+              <Text component={TextVariants.small} className="minimum-in-sync-replicas">
                 Minimum in-sync replicas
               </Text>
               <Touchspin value={2} />
