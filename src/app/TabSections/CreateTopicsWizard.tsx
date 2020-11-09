@@ -28,7 +28,7 @@ import './CreateTopicsWizard.css';
 import { CreateTopicsWizardMoreOptions } from './CreateTopicsWizardMoreOptions';
 import { CreateTopicStep4 } from './CreateTopicStep4';
 
-const CreateTopicsWizard: React.FunctionComponent = () => {
+const CreateTopicsWizard: React.FunctionComponent = ({ setIsCreateTopic }) => {
 
   const [topicNameInput, setTopicNameInput] = useState();
   const [radio1Step3, setRadio1Step3] = useState(false);
@@ -123,10 +123,6 @@ const CreateTopicsWizard: React.FunctionComponent = () => {
 
   const handleSwitchChange = isSwitchChecked => {
     setIsSwitchChecked(isSwitchChecked);
-  }
-
-  const closeWizard = () => {
-    console.log('close wizard');
   }
 
   const step1 = (
@@ -315,6 +311,10 @@ const CreateTopicsWizard: React.FunctionComponent = () => {
   ];
 
   const title = 'Create topics wizard';
+  
+  const closeWizard = () => {
+    setIsCreateTopic(false);
+  }
 
   return (
     <>
@@ -347,6 +347,7 @@ const CreateTopicsWizard: React.FunctionComponent = () => {
           navAriaLabel={`${title} steps`}
           mainAriaLabel={`${title} content`}
           steps={steps}
+          onClose={closeWizard}
           />
         </PageSection>
       )}

@@ -1,9 +1,24 @@
 import * as React from 'react';
-import { PageSection, Title } from '@patternfly/react-core';
+import {
+  PageSection,
+  EmptyState,
+  EmptyStateIcon,
+  EmptyStateBody,
+  Title
+  } from '@patternfly/react-core';
+import ExclamationTriangle from '@patternfly/react-icons/dist/js/icons/exclamation-triangle-icon';
 
 const Dashboard: React.FunctionComponent = () => (
   <PageSection>
-    <Title headingLevel="h1" size="lg">This is the dashboard page.</Title>
+    <EmptyState> 
+      <EmptyStateIcon icon={ExclamationTriangle} />
+      <Title headingLevel="h4" size="lg">
+        Before you start
+      </Title>
+      <EmptyStateBody>
+        This is not a fully functional UI. It is a prototype for user testing.
+      </EmptyStateBody> 
+    </EmptyState>
   </PageSection>
 )
 

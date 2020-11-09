@@ -160,7 +160,7 @@ const OpenShiftStreams: React.FunctionComponent = () => {
       </Drawer>
       }
       { isCreateTopic &&
-        <CreateTopicsWizard/>
+        <CreateTopicsWizard setIsCreateTopic={setIsCreateTopic} />
       }
       { isTopicExpanded &&
         <TopicItem topicName={topicName} setIsExpanded2={setIsExpanded2} consumergroupID={consumergroupID} setConsumerGroupID={setConsumerGroupID}/>
