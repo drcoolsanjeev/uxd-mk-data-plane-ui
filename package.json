@@ -7,7 +7,7 @@
   "homepage": "https://patternfly-react-seed.surge.sh",
   "license": "MIT",
   "private": true,
-  "namespace": "ddonahue",
+  "namespace": "cmolloy",
   "scripts": {
     "prebuild": "npm run clean",
     "dr:surge": "node dr-surge.js",
