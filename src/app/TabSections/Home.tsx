@@ -50,7 +50,7 @@ const Home: React.FunctionComponent = ({isExpanded, setIsExpanded, setIsCreateTo
       "icon": Documentation
     },
     {
-      "title":"Connect to this cluster",
+      "title":"Connect to this instance",
       "description": "Get connection details and sample code to connect your applications.",
       "icon": Connect
     }

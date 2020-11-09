@@ -47,13 +47,13 @@ const ClusterConnectionDrawer: React.FunctionComponent = ({onCloseClick, drawerR
     <>
       <TextContent className="pf-u-pb-sm">
         <Text component={TextVariants.small}>
-          To connect an application or tool to this cluster, you will need the address of a bootstrap server, a certificate and generated credentials.
+          To connect an application or tool to this Kafka instance, you will need the address of a bootstrap server, a certificate and generated credentials.
         </Text>
         <Text component={TextVariants.h5}>
           Bootstrap servers and credentials
         </Text>
         <Text component={TextVariants.small}>
-          Your application or tool will make its initial connection to the cluster using the bootstrap server, and authenticate with credentials specific to the server if required.
+          Your application or tool will make its initial connection to the Kafka instance using the bootstrap server, and authenticate with credentials specific to the server if required.
         </Text>
         <Text component={TextVariants.h5}>
           External server
@@ -72,7 +72,7 @@ const ClusterConnectionDrawer: React.FunctionComponent = ({onCloseClick, drawerR
           Certificates
         </Text>
         <Text component={TextVariants.small}>
-          A certificate is required by your Kafka clients to connect securely to this cluster.
+          A certificate is required by your Kafka clients to connect securely to this Kafka instance.
         </Text>
         <Split hasGutter>
           <SplitItem isFilled>
