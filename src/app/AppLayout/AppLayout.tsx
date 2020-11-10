@@ -87,18 +87,13 @@ const AppLayout: React.FunctionComponent<IAppLayout> = ({children}) => {
       nav={Navigation}
       isNavOpen={isMobileView ? isNavOpenMobile : isNavOpen} />
   );
-  const PageSkipToContent = (
-    <SkipToContent href="#primary-app-container">
-      Skip to Content
-    </SkipToContent>
-  );
+
   return (
     <Page
       mainContainerId="primary-app-container"
       header={Header}
       sidebar={Sidebar}
-      onPageResize={onPageResize}
-      skipToContent={PageSkipToContent}>
+      onPageResize={onPageResize}>
       {children}
     </Page>
   );
