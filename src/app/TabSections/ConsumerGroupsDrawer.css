@@ -10,3 +10,12 @@
 .cluster-connection-drawer .pf-c-content small {
   margin-bottom: 4px;
 }
+
+.pf-drawer-top.pf-c-content {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.pf-drawer-top.pf-c-content > h3 {
+  margin-top: 0;
+}

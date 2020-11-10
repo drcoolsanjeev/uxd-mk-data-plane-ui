@@ -116,25 +116,7 @@ const OpenShiftStreams: React.FunctionComponent = () => {
             <ClusterConnectionDrawer onCloseClick={onCloseClick} drawerRef={drawerRef} isExpanded={isExpanded}  />
             }>
           <DrawerContentBody>
-            <AlertGroup isToast>
-              { alertVisible ? (
-                <Alert
-                isLiveRegion
-                variant="success"
-                title="OpenShift Streams topic created"
-                actionClose={
-                  <AlertActionCloseButton
-                    aria-label="Close success alert"
-                    onClose={handleAlertClose}
-                  />
-                }
-              >
-                The topic was successfully created in the Kafka instance.
-              </Alert>
-              ) : (
-                <></>
-              )}
-            </AlertGroup>
+
             <section className="pf-c-page__main-breadcrumb">
               { mainBreadcrumbs }
             </section>

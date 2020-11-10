@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
 import {
+  AlertGroup,
+  AlertActionCloseButton,
+  Alert,
   Breadcrumb,
   BreadcrumbItem,
   Button,
@@ -44,6 +47,8 @@ const CreateTopicsWizard: React.FunctionComponent = ({ setIsCreateTopic }) => {
   const [isMsgSelectOpen, setIsMsgSelectOpen] = useState(false);
   const [selected, setSelected] = useState(false);
   const [isSwitchChecked, setIsSwitchChecked] = useState(false);
+
+  const [alertVisible, setAlertVisible] = useState(false);
 
   console.log('what is the msgReten' + msgRetentionValue);
 
@@ -302,19 +307,31 @@ const CreateTopicsWizard: React.FunctionComponent = ({ setIsCreateTopic }) => {
       </TextContent>
     </>
   )
+  
+
+  const handleAlertClose = () => {
+    console.log('did it make it here')
+    setAlertVisible(true);
+  }
+
+  const closeWizard = () => {
+    setIsCreateTopic(false);
+ 
+    // setAlertVisible(true);
+    // setTimeout(function(){ setIsCreateTopic(false) }, 1000);
+  }
+
 
   const steps = [
     { name: 'Topic name', component: step1 },
     { name: 'Partitions', component: step2 },
     { name: 'Message retention', component: step3 },
-    { name: 'Replicas', component: <CreateTopicStep4 onClose={closeWizard} msgRetentionValue={msgRetentionValue}  setMsgRetentionValue={setMsgRetentionValue}/>, nextButtonText: 'Finish' }
+    { name: 'Replicas', component: <CreateTopicStep4 onClick={closeWizard} onSave={handleAlertClose} msgRetentionValue={msgRetentionValue} setMsgRetentionValue={setMsgRetentionValue}/>, nextButtonText: 'Finish' }
   ];
 
   const title = 'Create topics wizard';
   
-  const closeWizard = () => {
-    setIsCreateTopic(false);
-  }
+
 
   return (
     <>
@@ -322,6 +339,27 @@ const CreateTopicsWizard: React.FunctionComponent = ({ setIsCreateTopic }) => {
       { mainBreadcrumbs }
     </section>
     <PageSection variant={PageSectionVariants.light}>
+
+      <AlertGroup isToast>
+      { alertVisible ? (
+        <Alert
+        isLiveRegion
+        variant="success"
+        title="OpenShift Streams topic created"
+        actionClose={
+          <AlertActionCloseButton
+            aria-label="Close success alert"
+            onClose={handleAlertClose}
+          />
+        }
+      >
+        The topic was successfully created in the Kafka instance.
+      </Alert>
+      ) : (
+        <></>
+      )}
+    </AlertGroup>
+
       <Title headingLevel="h1" size="lg">Create topic</Title>
       <Switch
         id="simple-switch"
@@ -337,7 +375,7 @@ const CreateTopicsWizard: React.FunctionComponent = ({ setIsCreateTopic }) => {
         <>
         <Divider/>
         <PageSection variant={PageSectionVariants.light}>
-          <CreateTopicsWizardMoreOptions/>
+          <CreateTopicsWizardMoreOptions setIsCreateTopic={setIsCreateTopic} />
         </PageSection>
         </>
       ) : (

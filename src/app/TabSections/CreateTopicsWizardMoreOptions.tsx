@@ -35,7 +35,7 @@ import HelpIcon from '@patternfly/react-icons/dist/js/icons/help-icon';
 import { JumpLinks } from '../CustomComponents/JumpLinks';
 import { JumpLinksItem } from '../CustomComponents/JumpLinksItem';
 
-const CreateTopicsWizardMoreOptions: React.FunctionComponent = () => {
+const CreateTopicsWizardMoreOptions: React.FunctionComponent = ({setIsCreateTopic}) => {
 
   const [value1, setValue1] = useState("");
   const [isOpen1, setIsOpen1] = useState(false);
@@ -1080,8 +1080,8 @@ const CreateTopicsWizardMoreOptions: React.FunctionComponent = () => {
               </FormGroup>
 
               <ActionGroup>
-                <Button variant="primary">Create topic</Button>
-                <Button variant="link">Cancel</Button>
+                <Button variant="primary" onClick={() => setIsCreateTopic(false)}>Create topic</Button>
+                <Button variant="link" onClick={() => setIsCreateTopic(false)}>Cancel</Button>
               </ActionGroup>
             </Form>
 

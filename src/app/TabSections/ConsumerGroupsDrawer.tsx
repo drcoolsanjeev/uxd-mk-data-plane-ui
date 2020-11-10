@@ -94,10 +94,10 @@ const ConsumerGroupsDrawer: React.FunctionComponent = ({onCloseClick, drawerRef,
 );
 
   return (
-    <DrawerPanelContent className="cluster-connection-drawer" widths={{ default: 'width_50' }}>
+    <DrawerPanelContent widths={{ default: 'width_50' }}>
       <DrawerHead>
         <span tabIndex={isExpanded ? 0 : -1} ref={drawerRef}>
-          <TextContent>
+          <TextContent className="pf-drawer-top">
             <Text component={TextVariants.small}>Consumer group ID</Text>
             <Text component={TextVariants.h3}>{consumergroupID}</Text>
           </TextContent>
