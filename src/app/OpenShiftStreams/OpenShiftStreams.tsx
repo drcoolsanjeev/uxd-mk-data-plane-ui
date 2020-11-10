@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
 import {
+  Alert,
+  AlertGroup,
+  AlertActionCloseButton,
   Breadcrumb,
   BreadcrumbItem,
   Button,
@@ -40,6 +43,7 @@ const OpenShiftStreams: React.FunctionComponent = () => {
   const contentRef2 = React.createRef();
   const contentRef3 = React.createRef();
   const contentRef4 = React.createRef();
+  const [alertVisible, setAlertVisible] = useState(true);
 
   const onExpand = () => {
     drawerRef.current && drawerRef.current.focus()
@@ -58,6 +62,10 @@ const OpenShiftStreams: React.FunctionComponent = () => {
     console.log('what is tabIndex  ' + tabIndex);
     setActiveTabKey(tabIndex);
   };
+
+  const handleAlertClose = () => {
+    setAlertVisible(false);
+  }
 
   const mainTabs = (
     <Tabs activeKey={activeTabKey} onSelect={handleTabClick} inset={{default: 'insetMd'}}>
@@ -108,6 +116,25 @@ const OpenShiftStreams: React.FunctionComponent = () => {
             <ClusterConnectionDrawer onCloseClick={onCloseClick} drawerRef={drawerRef} isExpanded={isExpanded}  />
             }>
           <DrawerContentBody>
+            <AlertGroup isToast>
+              { alertVisible ? (
+                <Alert
+                isLiveRegion
+                variant="success"
+                title="OpenShift Streams topic created"
+                actionClose={
+                  <AlertActionCloseButton
+                    aria-label="Close success alert"
+                    onClose={handleAlertClose}
+                  />
+                }
+              >
+                The topic was successfully created in the Kafka instance.
+              </Alert>
+              ) : (
+                <></>
+              )}
+            </AlertGroup>
             <section className="pf-c-page__main-breadcrumb">
               { mainBreadcrumbs }
             </section>
@@ -118,7 +145,7 @@ const OpenShiftStreams: React.FunctionComponent = () => {
                 </LevelItem>
                 <LevelItem>
                   <Button variant="link" icon={<CodeBranchIcon />} iconPosition="right" onClick={onClusterConnection}>
-                    Connect to this cluster
+                    Connect to this instance
                   </Button>
                 </LevelItem>
               </Level>

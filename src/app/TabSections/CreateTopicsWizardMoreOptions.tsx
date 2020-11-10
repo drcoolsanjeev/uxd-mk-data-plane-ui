@@ -397,7 +397,7 @@ const CreateTopicsWizardMoreOptions: React.FunctionComponent = () => {
               Messages
             </Text>
             <Text component={TextVariants.p}>
-              These details control how your messages will be handled in the cluster.
+              These details control how your messages will be handled in the Kafka instance.
             </Text>
           </TextContent>
           <Form>

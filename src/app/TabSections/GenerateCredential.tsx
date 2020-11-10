@@ -476,7 +476,7 @@ const GenerateCredential: React.FunctionComponent = () => {
     )}
     <Wizard
       title={title}
-      description="Generate credential for your applicatin"
+      description="Generate credential for your application"
       steps={steps}
       onNext={onMove}
       onBack={onMove}

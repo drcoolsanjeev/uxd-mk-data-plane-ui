@@ -23,6 +23,7 @@ const TopicItem: React.FunctionComponent = ({topicName, setIsExpanded2, setConsu
   const [activeTabKey, setActiveTabKey] = useState(0);
   const contentRef1 = React.createRef();
   const contentRef2 = React.createRef();
+  const contentRef3 = React.createRef();
   const [isExpanded, setIsExpanded] = useState(false);
   const drawerRef = React.createRef();
 
@@ -66,6 +67,12 @@ const TopicItem: React.FunctionComponent = ({topicName, setIsExpanded2, setConsu
         tabContentId="refTab2Section"
         tabContentRef={contentRef2}
       />
+      <Tab
+        eventKey={2}
+        title={<TabTitleText>Messages</TabTitleText>}
+        tabContentId="refTab3Section"
+        tabContentRef={contentRef3}
+      />
     </Tabs>
   )
 
@@ -87,7 +94,7 @@ const TopicItem: React.FunctionComponent = ({topicName, setIsExpanded2, setConsu
         {mainTabs}
       </PageSection>
 
-        <TabContent eventKey={0} id="refTab1Section" ref={contentRef1} aria-label="Tab item 1">
+        <TabContent eventKey={0} id="refTab1Section" ref={contentRef1} aria-label="Topics">
 
           <PageSection>
             <TopicItemConsumerGroups setIsExpanded={setIsExpanded} setConsumerGroupID={setConsumerGroupID} consumergroupID={consumergroupID}/>
@@ -96,9 +103,15 @@ const TopicItem: React.FunctionComponent = ({topicName, setIsExpanded2, setConsu
 
         </TabContent>
 
-        <TabContent eventKey={1} id="refTab2Section" ref={contentRef2} aria-label="Tab item 2" hidden>
+        <TabContent eventKey={1} id="refTab2Section" ref={contentRef2} aria-label="Properties" hidden>
           <PageSection variant={PageSectionVariants.light}>
             <TopicItemProperties/>
+          </PageSection>
+        </TabContent>
+
+        <TabContent eventKey={2} id="refTab3Section" ref={contentRef3} aria-label="Messages" hidden>
+          <PageSection variant={PageSectionVariants.light}>
+            The contents that would display here are not included in this prototype.
           </PageSection>
         </TabContent>
 
