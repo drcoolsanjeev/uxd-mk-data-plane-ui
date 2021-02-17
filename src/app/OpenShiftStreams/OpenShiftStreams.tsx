@@ -59,7 +59,7 @@ const OpenShiftStreams: React.FunctionComponent = () => {
   };
 
   const handleTabClick = (event, tabIndex) => {
-    console.log('what is tabIndex  ' + tabIndex);
+    // console.log('what is tabIndex  ' + tabIndex);
     setActiveTabKey(tabIndex);
   };
 
@@ -98,14 +98,13 @@ const OpenShiftStreams: React.FunctionComponent = () => {
 
   const mainBreadcrumbs = (
     <Breadcrumb>
-      <BreadcrumbItem to="#">Red Hat OpenShift Streams for Apache Kafka</BreadcrumbItem>
+      <BreadcrumbItem to="https://cloud.redhat.com/beta/application-services/openshift-streams/">OpenShift Streams</BreadcrumbItem>
       <BreadcrumbItem to="#" isActive>
-        MK Cluster Instance
+       red-hat
       </BreadcrumbItem>
     </Breadcrumb>
   )
 
-  console.log('is expanded 2 trueeee' + isExpanded2);
 
   return (
     <>
@@ -123,7 +122,7 @@ const OpenShiftStreams: React.FunctionComponent = () => {
             <PageSection variant={PageSectionVariants.light}>
               <Level>
                 <LevelItem>
-                  <Title headingLevel="h1" size="xl">MK Cluster Instance</Title>
+                  <Title headingLevel="h1" size="xl">red-hat</Title>
                 </LevelItem>
                 <LevelItem>
                   <Button variant="link" icon={<CodeBranchIcon />} iconPosition="right" onClick={onClusterConnection}>

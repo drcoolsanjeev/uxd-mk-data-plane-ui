@@ -38,9 +38,9 @@ const TopicItem: React.FunctionComponent = ({topicName, setIsExpanded2, setConsu
 
   const mainBreadcrumbs = (
     <Breadcrumb>
-      <BreadcrumbItem to="/openshiftstreams">OpenShift Streams</BreadcrumbItem>
+      <BreadcrumbItem to="https://cloud.redhat.com/beta/application-services/openshift-streams/">OpenShift Streams</BreadcrumbItem>
       <BreadcrumbItem to="/openshiftstreams">
-        MK Cluster Instance
+        red-hat
       </BreadcrumbItem>
       <BreadcrumbItem isActive>
         {topicName}
